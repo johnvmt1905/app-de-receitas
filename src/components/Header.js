@@ -11,7 +11,7 @@ function Header() {
   const { searchBar, toggleSearchBar } = useContext(AppContext);
   const history = useHistory();
   return (
-    <header>
+    <header className="header-div">
       <nav className="header-nav">
         <button
           type="button"
