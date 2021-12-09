@@ -5,6 +5,7 @@ import AppContext from './AppContext';
 function AppProvider({ children }) {
   const INITIAL_STATE = {};
   const [state, setState] = useState(INITIAL_STATE);
+
   return (
     <AppContext.Provider value={ { state, setState } }>
       {children}
