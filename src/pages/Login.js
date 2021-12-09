@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   function disableButton() {
     const MAX_LENGTH = 6;
@@ -21,6 +23,7 @@ function Login() {
     };
 
     localStorage.setItem('user', JSON.stringify(user));
+    history.push('/comidas');
   }
 
   return (
