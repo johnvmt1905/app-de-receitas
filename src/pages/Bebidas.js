@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
+import Header from '../components/Header';
 
 function Bebidas() {
   const { data: { drinks }, recipeIngredients } = useContext(Context);
@@ -15,7 +16,8 @@ function Bebidas() {
   function showDrinks() {
     const MAX_DRINKS = 12;
     return (
-      <section>
+      <div>
+        <Header pageTitle="Bebidas" />
         <section className="card-container">
           { selectRecipe().map(({ strDrink, strDrinkThumb, idDrink }, index) => (
             index < MAX_DRINKS
@@ -28,7 +30,7 @@ function Bebidas() {
           />
           )) }
         </section>
-      </section>
+      </div>
     );
   }
 

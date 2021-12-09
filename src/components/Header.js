@@ -24,7 +24,7 @@ function searchBarIcon(toggleSearchBar, searchBar) {
 // expera receber prop "pageTitle"  com o nome da página
 function Header({ pageTitle = 'nome da página' }) {
   const [searchBar, toggleSearchBar] = useState(false);
-  const hasButton = () => pageTitle === 'Explorar' || pageTitle === 'Explorar Origem';
+  const hasButton = () => pageTitle === 'Comidas' || pageTitle === 'Explorar Origem';
   const history = useHistory();
   return (
     <>

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AppContext from './AppContext';
+import fetchAPI from '../fetchApi';
 
 function AppProvider({ children }) {
   const INITIAL_STATE = {
@@ -14,9 +15,6 @@ function AppProvider({ children }) {
 
   const [comida, setComida] = useState([]);
   const [drinks, setDrinks] = useState([]);
-
-  const fetchAPI = async (url) => fetch(url)
-    .then((response) => response.json());
 
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
