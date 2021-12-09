@@ -1,17 +1,16 @@
 .header-div {
-  justify-content: center;
-  width: 100vw;
+  background-color: rgb(226, 226, 226);
   display: flex;
   height: 100px;
-  background-color: rgb(226, 226, 226);
-
+  justify-content: center;
+  width: 100vw;
 }
 
 .header-nav {
   align-items: center;
-  width: 100%;
   display: flex;
   justify-content: space-around;
+  width: 100%;
 }
 
 .header-nav a {
@@ -35,12 +34,12 @@
 
 .header-nav button:active {
   background-color: rgba(161, 161, 161, 0.432);
- }
+}
 
- .header-nav button:focus {
+.header-nav button:focus {
   border: none;
   outline: none;
- }
+}
 
 .header-nav img {
   fill: rgb(121, 121, 121);
@@ -49,49 +48,51 @@
   width: 45px;
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and ( max-width : 360px ) {
+
   .header-div {
     background-color: rgb(226, 226, 226);
     display: flex;
-    justify-content: center;
     height: 55px;
+    justify-content: center;
     width: 100vw;
   }
-  
+
   .header-nav {
     align-items: center;
     display: flex;
     justify-content: space-around;
     width: 100%;
   }
+
   .header-nav a {
     color: black;
     font-size: 25px;
     margin: 5px 20px;
     text-decoration: none;
   }
-  
+
   .header-nav button {
     background-color: transparent;
     border: none;
     border-radius: 5px;
     transition: 0.2s;
   }
-  
+
   .header-nav button:hover {
     background-color: rgba(199, 199, 199, 0.432);
     cursor: pointer;
   }
-  
+
   .header-nav button:active {
     background-color: rgba(161, 161, 161, 0.432);
-   }
-  
-   .header-nav button:focus {
+  }
+
+  .header-nav button:focus {
     border: none;
     outline: none;
-   }
-  
+  }
+
   .header-nav img {
     fill: rgb(121, 121, 121);
     height: 35px;

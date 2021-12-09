@@ -1,4 +1,3 @@
-/* eslint-disable no-return-assign */
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
