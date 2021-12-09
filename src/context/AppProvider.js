@@ -5,10 +5,9 @@ import AppContext from './AppContext';
 function AppProvider({ children }) {
   const INITIAL_STATE = {};
   const [state, setState] = useState(INITIAL_STATE);
-  const [searchBar, toggleSearchBar] = useState(false);
 
   return (
-    <AppContext.Provider value={ { state, setState, searchBar, toggleSearchBar } }>
+    <AppContext.Provider value={ { state, setState } }>
       {children}
     </AppContext.Provider>
   );
