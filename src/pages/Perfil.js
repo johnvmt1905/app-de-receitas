@@ -14,11 +14,7 @@ function Perfil() {
   }
 
   function LogoutButton() {
-    const user = {
-      email: '',
-    };
-
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.clear();
     history.push('/');
   }
 
