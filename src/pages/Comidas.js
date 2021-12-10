@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 
 function Comidas() {
   const { data: { meals }, recipeIngredients } = useContext(Context);
@@ -18,6 +19,7 @@ function Comidas() {
     return (
       <div>
         <Header pageTitle="Comidas" />
+        <Filter url="https://www.themealdb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
           { selectRecipes().map(({ strMeal, strMealThumb, idMeal }, index) => (
             index < MAX_MEALS
