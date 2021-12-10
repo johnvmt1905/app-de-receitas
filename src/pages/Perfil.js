@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 function Perfil() {
   const { email } = JSON.parse(localStorage.getItem('user'));
@@ -20,6 +22,7 @@ function Perfil() {
 
   return (
     <div>
+      <Header pageTitle="Perfil" />
       <h2 data-testid="profile-email">
         {email}
       </h2>
@@ -44,6 +47,7 @@ function Perfil() {
       >
         Sair
       </button>
+      <Footer />
     </div>
   );
 }
