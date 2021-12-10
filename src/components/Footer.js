@@ -1,10 +1,12 @@
 import React from 'react';
+import { useHistory } from 'react-router';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
 import '../assets/css/footer.css';
 
 function Footer() {
+  const history = useHistory();
   return (
     <footer
       data-testid="footer"
@@ -16,6 +18,7 @@ function Footer() {
         alt="drink-button"
         data-testId="drinks-bottom-btn"
         src={ drinkIcon }
+        onClick={ () => history.push('/bebidas') }
       />
       <input
         // className="search-input"
