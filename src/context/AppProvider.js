@@ -27,7 +27,7 @@ function AppProvider({ children }) {
 
   useEffect(() => {
     getDataFromAPI();
-  });
+  }, []);
 
   return (
     <AppContext.Provider
