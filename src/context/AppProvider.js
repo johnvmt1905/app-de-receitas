@@ -39,7 +39,8 @@ function AppProvider({ children }) {
         setComida,
         drinks,
         setDrinks,
-        getDataFromAPI } }
+        getDataFromAPI,
+      } }
     >
       {children}
     </AppContext.Provider>

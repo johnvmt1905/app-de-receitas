@@ -3,6 +3,7 @@ import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
+import Footer from '../components/Footer';
 
 function Bebidas() {
   const { data: { drinks }, recipeIngredients } = useContext(Context);
@@ -32,6 +33,7 @@ function Bebidas() {
           />
           )) }
         </section>
+        <Footer />
       </div>
     );
   }

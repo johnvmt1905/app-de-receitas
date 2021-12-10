@@ -12,7 +12,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/comidas" component={ Comidas } />
-      <Route path="/bebidas" component={ Bebidas } />
+      <Route exact path="/bebidas" component={ Bebidas } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/explorar" component={ Explorer } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
