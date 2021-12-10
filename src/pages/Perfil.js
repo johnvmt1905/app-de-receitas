@@ -4,7 +4,14 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 function Perfil() {
-  const { email } = JSON.parse(localStorage.getItem('user'));
+  // console.log(localStorage.getItem('user'));
+  const localUserData = localStorage.getItem('user');
+  let email = '';
+  if (localUserData) {
+    const auxiliarEmail = JSON.parse(localUserData);
+    email = auxiliarEmail.email;
+  }
+
   const history = useHistory();
 
   function recipesDone() {

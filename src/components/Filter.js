@@ -7,6 +7,7 @@ import Context from '../context/AppContext';
 const INITIAL_STATE = [{ strCategory: 'All' }];
 
 function Filter({ url }) {
+  const [firstTime, setFirstTime] = useState(true);
   const history = useHistory();
   const { location: { pathname } } = history;
   const { setData, data, getDataFromAPI } = useContext(Context);
@@ -16,13 +17,19 @@ function Filter({ url }) {
 
   const filterByCategory = async (categoryToBeFilter) => {
     if (categoryToBeFilter === 'All') {
-      fetchAPI();
+      if (pathname === '/comidas') {
+        const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+        setData({ ...data, meals: mealsList.meals });
+      } else if (pathname === '/bebidas') {
+        const drinksList = await fetchAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+        setData({ ...data, drinks: drinksList.drinks });
+      }
     }
 
     if (pathname === '/comidas') {
       const mealsByCategory = await fetchAPI(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoryToBeFilter}`);
       setData({ ...data, meals: mealsByCategory.meals });
-    } else {
+    } else if (pathname === '/bebidas') {
       const drinksByCategory = await fetchAPI(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${categoryToBeFilter}`);
       setData({ ...data, drinks: drinksByCategory.drinks });
     }
@@ -38,22 +45,24 @@ function Filter({ url }) {
     filterByCategory(categoryToBeFilter);
   };
 
-  const getCategory = async () => {
-    const categoryFilter = await fetchAPI(url);
-    const MAX_CATEGORY = 5;
-    const page = url.split('www.')[1].split('.com')[0];
-    if (page === 'themealdb') {
-      setCategory([...category, ...categoryFilter.meals
-        .filter((_, index) => index < MAX_CATEGORY)]);
-      return null;
-    }
-    setCategory([...category, ...categoryFilter.drinks
-      .filter((_, index) => index < MAX_CATEGORY)]);
-  };
-
   useEffect(() => {
-    getCategory();
-  });
+    const getCategory = async () => {
+      const categoryFilter = await fetchAPI(url);
+      const MAX_CATEGORY = 5;
+      const page = url.split('www.')[1].split('.com')[0];
+      if (page === 'themealdb') {
+        setCategory([...category, ...categoryFilter.meals
+          .filter((_, index) => index < MAX_CATEGORY)]);
+        return null;
+      }
+      setCategory([...category, ...categoryFilter.drinks
+        .filter((_, index) => index < MAX_CATEGORY)]);
+    };
+    if (firstTime) {
+      getCategory();
+      setFirstTime(false);
+    }
+  }, [category, url, firstTime]);
 
   return (
     <nav className="category-container">

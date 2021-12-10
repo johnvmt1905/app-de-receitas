@@ -15,7 +15,7 @@ function Routes() {
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/bebidas" component={ Bebidas } />
       <Route exact path="/" component={ Login } />
-      <Route path="/perfil" component={ Perfil } />
+      <Route exact path="/perfil" component={ Perfil } />
       <Route exact path="/explorar" component={ Explorer } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
       <Route exact path="/receitas-feitas" component={ MadeRecipes } />

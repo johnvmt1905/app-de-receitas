@@ -12,6 +12,7 @@ function CardReceita(props) {
 
   return (
     <Link
+      className="card-receita"
       to={ {
         pathname: `${rota.length === sizePath ? '/comidas' : pathname}/${id}`,
         state: { id },

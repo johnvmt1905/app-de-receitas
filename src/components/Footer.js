@@ -16,7 +16,7 @@ function Footer() {
         // className="search-input"
         type="image"
         alt="drink-button"
-        data-testId="drinks-bottom-btn"
+        data-testid="drinks-bottom-btn"
         src={ drinkIcon }
         onClick={ () => history.push('/bebidas') }
       />
@@ -24,7 +24,7 @@ function Footer() {
         // className="search-input"
         type="image"
         alt="explore-button"
-        data-testId="explore-bottom-btn"
+        data-testid="explore-bottom-btn"
         src={ exploreIcon }
         onClick={ () => history.push('/explorar') }
       />
@@ -32,7 +32,7 @@ function Footer() {
         // className="search-input"
         type="image"
         alt="food-button"
-        data-testId="food-bottom-btn"
+        data-testid="food-bottom-btn"
         src={ mealIcon }
         onClick={ () => history.push('/comidas') }
       />
