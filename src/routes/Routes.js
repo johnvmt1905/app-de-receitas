@@ -1,14 +1,18 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
+import Bebidas from '../pages/Bebidas';
+import Comidas from '../pages/Comidas';
+import NotFound from '../pages/NotFound';
+import Login from '../pages/Login';
 import Explorer from '../pages/Explorer';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
-import Login from '../pages/Login';
 import MadeRecipes from '../pages/MadeRecipes';
-import NotFound from '../pages/NotFound';
 
 function Routes() {
   return (
     <Switch>
+      <Route exact path="/comidas" component={ Comidas } />
+      <Route path="/bebidas" component={ Bebidas } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/explorar" component={ Explorer } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
