@@ -16,7 +16,7 @@ function Filter({ url }) {
 
   const filterByCategory = async (categoryToBeFilter) => {
     if (categoryToBeFilter === 'All') {
-      getDataFromAPI();
+      fetchAPI();
     }
 
     if (pathname === '/comidas') {
