@@ -1,21 +1,39 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { searchByIngredient, searchByName,
-  searchForTheFirstLetter } from '../services/searchApi';
+import { useLocation } from 'react-router';
+import { searchForFoodIngredient,
+  searchByFoodName,
+  searchForTheFirstLetterOfTheFood,
+  searchForBeverageIngredient,
+  searchNameOfDrink,
+  searchForTheFirstLetterOfTheDrink } from '../services/searchApi';
 
-function requestApi(radio, value) {
-  if (radio === 'Ingrediente') {
-    searchByIngredient(value);
-  } else if (radio === 'Nome') {
-    searchByName(value);
-  } else if (radio === 'Primeira letra' && value.length < 2) {
-    searchForTheFirstLetter(value);
-  } else {
-    global.alert('Sua busca deve conter somente 1 (um) caracter');
+function requestApi(radio, value, location) {
+  if (location.pathname === '/comidas') {
+    if (radio === 'Ingrediente') {
+      searchForFoodIngredient(value);
+    } else if (radio === 'Nome') {
+      searchByFoodName(value);
+    } else if (radio === 'Primeira letra' && value.length < 2) {
+      searchForTheFirstLetterOfTheFood(value);
+    } else {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
+    }
+  } else if (location.pathname === '/bebidas') {
+    if (radio === 'Ingrediente') {
+      searchForBeverageIngredient(value);
+    } else if (radio === 'Nome') {
+      searchNameOfDrink(value);
+    } else if (radio === 'Primeira letra' && value.length < 2) {
+      searchForTheFirstLetterOfTheDrink(value);
+    } else {
+      global.alert('Sua busca deve conter somente 1 (um) caracter');
+    }
   }
 }
 
 function SearchBar({ getRadioValue, setValue, state: { radio, value } }) {
+  const location = useLocation();
   return (
     <div className="search-bar">
       <div className="inputs-radio">
@@ -57,7 +75,7 @@ function SearchBar({ getRadioValue, setValue, state: { radio, value } }) {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => requestApi(radio, value) }
+          onClick={ () => requestApi(radio, value, location) }
         >
           Buscar
         </button>
