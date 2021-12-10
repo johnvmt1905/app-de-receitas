@@ -34,6 +34,7 @@ function Footer() {
         alt="food-button"
         data-testId="food-bottom-btn"
         src={ mealIcon }
+        onClick={ () => history.push('/comidas') }
       />
     </footer>
   );
