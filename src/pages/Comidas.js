@@ -4,6 +4,7 @@ import Context from '../context/AppContext';
 import Header from '../components/Header';
 import Filter from '../components/Filter';
 import Footer from '../components/Footer';
+import '../assets/css/foodContainers.css';
 
 function Comidas() {
   const { data: { meals }, recipeIngredients } = useContext(Context);
@@ -22,6 +23,7 @@ function Comidas() {
         <Header pageTitle="Comidas" />
         <Filter url="https://www.themealdb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
+          {console.log(selectRecipes())}
           { selectRecipes().map(({ strMeal, strMealThumb, idMeal }, index) => (
             index < MAX_MEALS
           && <CardReceita
@@ -38,15 +40,16 @@ function Comidas() {
     );
   }
 
-  function notFound() {
-    return (
-      global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-    );
-  }
+  // function notFound() {
+  //   return (
+  //     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
+  //   );
+  // }
 
   return (
     <section>
-      { meals !== null ? showReceitas() : notFound() }
+      {/* { meals !== null ? showReceitas() : notFound() } */}
+      {showReceitas()}
     </section>
   );
 }

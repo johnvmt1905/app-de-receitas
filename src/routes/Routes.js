@@ -8,6 +8,11 @@ import Login from '../pages/Login';
 import Explorer from '../pages/Explorer';
 import FavoriteRecipes from '../pages/FavoriteRecipes';
 import MadeRecipes from '../pages/MadeRecipes';
+import ExploreFood from '../pages/ExploreFood';
+import ExploreDrinks from '../pages/ExploreDrinks';
+import ExploreFoodIngredient from '../pages/ExploreFoodIngredient';
+import ExploreDrinkIngredient from '../pages/ExploreDrinkIngredient';
+import ExploreLocalFood from '../pages/ExploreLocalFood';
 
 function Routes() {
   return (
@@ -15,8 +20,21 @@ function Routes() {
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/bebidas" component={ Bebidas } />
       <Route exact path="/" component={ Login } />
-      <Route path="/perfil" component={ Perfil } />
+      <Route exact path="/perfil" component={ Perfil } />
       <Route exact path="/explorar" component={ Explorer } />
+      <Route exact path="/explorar/comidas" component={ ExploreFood } />
+      <Route exact path="/explorar/bebidas" component={ ExploreDrinks } />
+      <Route
+        exact
+        path="/explorar/comidas/ingredientes"
+        component={ ExploreFoodIngredient }
+      />
+      <Route
+        exact
+        path="/explorar/bebidas/ingredientes"
+        component={ ExploreDrinkIngredient }
+      />
+      <Route exact path="/explorar/comidas/area" component={ ExploreLocalFood } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
       <Route exact path="/receitas-feitas" component={ MadeRecipes } />
       <Route exact path="*" component={ NotFound } />
