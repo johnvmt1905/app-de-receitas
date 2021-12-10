@@ -2,10 +2,14 @@ import React from 'react';
 import drinkIcon from '../images/drinkIcon.svg';
 import exploreIcon from '../images/exploreIcon.svg';
 import mealIcon from '../images/mealIcon.svg';
+import '../assets/css/footer.css';
 
 function Footer() {
   return (
-    <footer data-testid="footer">
+    <footer
+      data-testid="footer"
+      className="footer-section"
+    >
       <input
         // className="search-input"
         type="image"
