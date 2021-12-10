@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
 import Header from '../components/Header';
+import Filter from '../components/Filter';
 import Footer from '../components/Footer';
 
 function Bebidas() {
@@ -19,6 +20,7 @@ function Bebidas() {
     return (
       <div>
         <Header pageTitle="Bebidas" />
+        <Filter url="https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
           { selectRecipe().map(({ strDrink, strDrinkThumb, idDrink }, index) => (
             index < MAX_DRINKS
