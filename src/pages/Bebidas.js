@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 function Bebidas() {
   const { data: { drinks }, recipeIngredients } = useContext(Context);
@@ -30,6 +31,7 @@ function Bebidas() {
           />
           )) }
         </section>
+        <Footer />
       </div>
     );
   }
