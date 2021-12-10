@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../assets/css/header.css';
+import SearchBar from './SearchBar';
 
 function searchBarIcon(toggleSearchBar, searchBar) {
   return (
@@ -21,11 +22,32 @@ function searchBarIcon(toggleSearchBar, searchBar) {
   );
 }
 
-// expera receber prop "pageTitle"  com o nome da página
+function handleChange(value, setValue) {
+  setValue((prevState) => (
+    { ...prevState, value }
+  ));
+}
+
+function getRadioValue(value, setValue) {
+  setValue((prevState) => (
+    { ...prevState, radio: value }
+  ));
+}
+
+// espera receber prop "pageTitle"  com o nome da página
 function Header({ pageTitle = 'nome da página' }) {
+  const HEADER_STATE = {
+    value: '',
+    radio: '',
+  };
+
   const [searchBar, toggleSearchBar] = useState(false);
-  const hasButton = () => pageTitle === 'Explorar' || pageTitle === 'Explorar Origem';
+  const [state, setValue] = useState(HEADER_STATE);
+
+  const hasButton = () => pageTitle === 'Comidas'
+  || pageTitle === 'Bebidas' || pageTitle === 'Explorar Origem';
   const history = useHistory();
+
   return (
     <>
       <header className="header-div">
@@ -36,7 +58,7 @@ function Header({ pageTitle = 'nome da página' }) {
             type="image"
             alt="Imagem do perfil"
             src={ profileIcon }
-            onClick={ () => history.push('/teste') }
+            onClick={ () => history.push('/perfil') }
           />
           <Link
             data-testid="page-title"
@@ -52,12 +74,16 @@ function Header({ pageTitle = 'nome da página' }) {
       {searchBar && (
         <div className="search-input-div">
           <input
+            name="valueInput"
+            value={ state.value }
             className="search-input"
             type="text"
-            data-testId="search-input"
+            data-testid="search-input"
+            onChange={ (event) => handleChange(event.target.value, setValue) }
           />
         </div>
       )}
+      <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />
     </>
   );
 }
