@@ -26,6 +26,7 @@ function Footer() {
         alt="explore-button"
         data-testId="explore-bottom-btn"
         src={ exploreIcon }
+        onClick={ () => history.push('/explorar') }
       />
       <input
         // className="search-input"
