@@ -24,6 +24,7 @@ function Filter({ url }) {
         const drinksList = await fetchAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
         setData({ ...data, drinks: drinksList.drinks });
       }
+      return null;
     }
 
     if (pathname === '/comidas') {
