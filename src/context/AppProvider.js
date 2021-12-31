@@ -16,6 +16,11 @@ function AppProvider({ children }) {
   const [comida, setComida] = useState([]);
   const [drinks, setDrinks] = useState([]);
 
+  const [startedRecipes, setStartedRecipes] = useState({ meals: {}, cocktails: {} });
+  const [finishedRecipes, setFinishedRecipes] = useState([]);
+
+  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const drinksList = await fetchAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
@@ -26,7 +31,16 @@ function AppProvider({ children }) {
   };
 
   useEffect(() => {
+    const getFromLocalStorage = () => {
+      const favoritesLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      if (favoritesLS) setFavoriteRecipes(favoritesLS);
+      const startedLS = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (startedLS) setStartedRecipes(startedLS);
+      const finishedLS = JSON.parse(localStorage.getItem('doneRecipes'));
+      if (finishedLS) setFinishedRecipes(finishedLS);
+    };
     getDataFromAPI();
+    getFromLocalStorage();
   }, []);
 
   return (
@@ -40,6 +54,12 @@ function AppProvider({ children }) {
         drinks,
         setDrinks,
         getDataFromAPI,
+        startedRecipes,
+        setStartedRecipes,
+        finishedRecipes,
+        setFinishedRecipes,
+        favoriteRecipes,
+        setFavoriteRecipes,
       } }
     >
       {children}

@@ -36,6 +36,34 @@ export async function searchForTheFirstLetterOfTheFood(firstLetter) {
   }
 }
 
+export async function searchByMealId(id) {
+  try {
+    const response = await
+    fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const data = await response.json();
+    if (data.meals === null) {
+      global.alert(MESSAGE);
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function searchByDrinkId(id) {
+  try {
+    const response = await
+    fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
+    const data = await response.json();
+    if (data.drinks === null) {
+      global.alert(MESSAGE);
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 export async function searchForBeverageIngredient(ingredient) {
   try {
     const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
