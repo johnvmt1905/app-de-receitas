@@ -48,15 +48,11 @@ export async function searchForTheFirstLetterOfTheFood(firstLetter, history) {
   }
 }
 
-export async function searchByMealId(id, history) {
+export async function searchByMealId(id) {
   try {
     const response = await
     fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
     const data = await response.json();
-    if (data.meals.length === 1) {
-      const { idMeal } = data.meals[0];
-      history.push(`/comidas/${idMeal}`);
-    }
     if (data.meals === null) {
       global.alert(MESSAGE);
     }
@@ -66,15 +62,11 @@ export async function searchByMealId(id, history) {
   }
 }
 
-export async function searchByDrinkId(id, history) {
+export async function searchByDrinkId(id) {
   try {
     const response = await
     fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
     const data = await response.json();
-    if (data.drinks.length === 1) {
-      const { idDrink } = data.drinks[0];
-      history.push(`/bebidas/${idDrink}`);
-    }
     if (data.drinks === null) {
       global.alert(MESSAGE);
     }
