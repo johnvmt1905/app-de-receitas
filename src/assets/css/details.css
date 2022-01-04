@@ -1,0 +1,9 @@
+.start-recipe-btn {
+  background-color: #83a960;
+  border: 0;
+  bottom: 0;
+  color: white;
+  height: 40px;
+  position: fixed;
+  width: 100%;
+}
