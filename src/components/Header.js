@@ -34,6 +34,31 @@ function getRadioValue(value, setValue) {
   ));
 }
 
+function favoritePage() {
+  return (
+    <div>
+      <button
+        type="button"
+        data-testid="filter-by-all-btn"
+      >
+        All
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-food-btn"
+      >
+        Food
+      </button>
+      <button
+        type="button"
+        data-testid="filter-by-drink-btn"
+      >
+        Drinks
+      </button>
+    </div>
+  );
+}
+
 // espera receber prop "pageTitle"  com o nome da página
 function Header({ pageTitle = 'nome da página' }) {
   const HEADER_STATE = {
@@ -46,6 +71,7 @@ function Header({ pageTitle = 'nome da página' }) {
 
   const hasButton = () => pageTitle === 'Comidas'
   || pageTitle === 'Bebidas' || pageTitle === 'Explorar Origem';
+  const noSearchBar = () => pageTitle === 'Receitas Favoritas';
   const history = useHistory();
 
   return (
@@ -83,7 +109,7 @@ function Header({ pageTitle = 'nome da página' }) {
           />
         </div>
       )}
-      <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />
+      {noSearchBar() ? favoritePage() : <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />}
     </>
   );
 }
