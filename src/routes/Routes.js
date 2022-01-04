@@ -13,12 +13,16 @@ import ExploreDrinks from '../pages/ExploreDrinks';
 import ExploreFoodIngredient from '../pages/ExploreFoodIngredient';
 import ExploreDrinkIngredient from '../pages/ExploreDrinkIngredient';
 import ExploreLocalFood from '../pages/ExploreLocalFood';
+import MealDetails from '../pages/MealDetails';
+import DrinkDetails from '../pages/DrinkDetails';
 
 function Routes() {
   return (
     <Switch>
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/bebidas" component={ Bebidas } />
+      <Route exact path="/comidas/:mealId" component={ MealDetails } />
+      <Route exact path="/bebidas/:drinkId" component={ DrinkDetails } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/perfil" component={ Perfil } />
       <Route exact path="/explorar" component={ Explorer } />

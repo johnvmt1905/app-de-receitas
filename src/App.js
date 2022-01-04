@@ -3,6 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import AppProvider from './context/AppProvider';
 import Routes from './routes/Routes';
+import './assets/css/body.css';
 
 function App() {
   return (
