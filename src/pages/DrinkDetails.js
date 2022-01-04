@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import Header from '../components/Header';
-// import Footer from '../components/Footer';
 import DetailedCard from '../components/DetailedCard';
 import { searchByDrinkId } from '../services/searchApi';
 
@@ -23,6 +21,7 @@ function DrinkDetails(props) {
         && <DetailedCard
           product={ product }
           history={ history }
+          type="drink"
         /> }
     </div>
   );

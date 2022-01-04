@@ -4,6 +4,18 @@
   bottom: 0;
   color: white;
   height: 40px;
+  left: 0;
+  position: fixed;
+  width: 100%;
+}
+
+.finish-recipe-btn {
+  background-color: #c21f1f;
+  border: 0;
+  bottom: 0;
+  color: white;
+  height: 40px;
+  left: 0;
   position: fixed;
   width: 100%;
 }

@@ -9,10 +9,10 @@ import Details from './Details';
 import '../assets/css/details.css';
 
 function CardDetails(props) {
-  const { product, history } = props;
+  const { product, type, history } = props;
   const prod = product;
-  const type = prod.idMeal ? 'meal' : 'drink';
   const id = prod.idMeal || prod.idDrink;
+  const detailsLink = `/${type === 'meal' ? 'comidas' : 'bebidas'}/${id}`;
   let embed;
   if (prod.strYoutube) {
     // Referência: https://stackoverflow.com/questions/573145/get-everything-after-the-dash-in-a-string-in-javascript
@@ -37,7 +37,7 @@ function CardDetails(props) {
           </Card.Subtitle>
           <div className="buttons">
             <FavoriteBtn product={ prod } type={ type } id={ id } />
-            <ShareBtn history={ history } />
+            <ShareBtn link={ detailsLink } />
           </div>
         </Card.Body>
         <Details product={ prod } />
@@ -62,6 +62,7 @@ function CardDetails(props) {
 
 CardDetails.propTypes = {
   product: PropTypes.shape({}).isRequired,
+  type: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
     location: PropTypes.shape({

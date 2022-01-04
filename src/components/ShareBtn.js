@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import ShareButton from '../images/shareIcon.svg';
 
-function ShareBtn({ history }) {
+function ShareBtn({ link }) {
   const [displayShareMessage, setDisplayShareMessage] = useState(false);
 
   function handleShare() {
     setDisplayShareMessage(true);
-    copy(`http://localhost:3000${history.location.pathname}`);
+    copy(`http://localhost:3000${link}`);
   }
 
   return (
@@ -26,11 +26,7 @@ function ShareBtn({ history }) {
 }
 
 ShareBtn.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default ShareBtn;
