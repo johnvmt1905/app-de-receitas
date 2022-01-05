@@ -26,11 +26,12 @@ function ExploreLocalFood() {
         <Header pageTitle="Explorar Origem" />
         <section className="section-select">
           <select name="" id="" data-testid="explore-by-area-dropdown">
+            <option value="All" data-testid="All-option">All</option>
             {
               placesOfOrigin
                 .map((element) => (
                   <option
-                    value=""
+                    value={ element }
                     key={ element }
                     data-testid={ `${element}-option` }
                   >
