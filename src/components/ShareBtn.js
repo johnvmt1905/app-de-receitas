@@ -3,18 +3,12 @@ import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
 import ShareButton from '../images/shareIcon.svg';
 
-function ShareBtn({ history, pageTitle, index, id, type }) {
+function ShareBtn({ link, pageTitle, index }) {
   const [displayShareMessage, setDisplayShareMessage] = useState(false);
 
   function handleShare() {
     setDisplayShareMessage(true);
-    const title = 'Receitas Favoritas';
-    if (pageTitle === title) {
-      copy(`http://localhost:3000/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`);
-    }
-    if (pageTitle !== title) {
-      copy(`http://localhost:3000${history.location.pathname}`);
-    }
+    copy(`http://localhost:3000${link}`);
   }
 
   function setTestId(title, i) {
@@ -38,15 +32,9 @@ function ShareBtn({ history, pageTitle, index, id, type }) {
 }
 
 ShareBtn.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
   index: PropTypes.number.isRequired,
   pageTitle: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  type: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default ShareBtn;

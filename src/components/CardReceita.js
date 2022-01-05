@@ -41,6 +41,7 @@ function favCard(props) {
   const {
     recipe: { name, image: img, id, category, type, alcoholicOrNot, area }, index, recipe,
   } = props;
+  const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
 
   return (
     <div className="card-receitaFavorita">
@@ -77,10 +78,9 @@ function favCard(props) {
         <div className="descriptions-buttons">
           <div>
             <ShareBtn
+              link={ detailsLink }
               pageTitle="Receitas Favoritas"
               index={ index }
-              id={ id }
-              type={ type }
             />
           </div>
           <div>

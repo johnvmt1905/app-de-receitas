@@ -4,7 +4,6 @@ import Footer from '../components/Footer';
 import Header from '../components/Header';
 
 function Perfil() {
-  // console.log(localStorage.getItem('user'));
   const localUserData = localStorage.getItem('user');
   let email = '';
   if (localUserData) {
