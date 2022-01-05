@@ -20,6 +20,8 @@ function AppProvider({ children }) {
   const [finishedRecipes, setFinishedRecipes] = useState([]);
 
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [favFilter, setFavFilter] = useState('');
+  const [hasFilter, setHasFilter] = useState(false);
 
   const [placesOfOrigin, setPlacesOfOrigin] = useState({ placesOfOrigin: [] });
 
@@ -71,6 +73,10 @@ function AppProvider({ children }) {
         favoriteRecipes,
         setFavoriteRecipes,
         placesOfOrigin,
+        hasFilter,
+        setHasFilter,
+        favFilter,
+        setFavFilter,
       } }
     >
       {children}

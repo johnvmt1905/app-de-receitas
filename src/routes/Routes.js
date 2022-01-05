@@ -15,6 +15,8 @@ import ExploreDrinkIngredient from '../pages/ExploreDrinkIngredient';
 import ExploreLocalFood from '../pages/ExploreLocalFood';
 import MealDetails from '../pages/MealDetails';
 import DrinkDetails from '../pages/DrinkDetails';
+import MealInProgress from '../pages/MealInProgress';
+import DrinkInProgress from '../pages/DrinkInProgress';
 
 function Routes() {
   return (
@@ -22,7 +24,9 @@ function Routes() {
       <Route exact path="/comidas" component={ Comidas } />
       <Route exact path="/bebidas" component={ Bebidas } />
       <Route exact path="/comidas/:mealId" component={ MealDetails } />
+      <Route exact path="/comidas/:id/in-progress/" component={ MealInProgress } />
       <Route exact path="/bebidas/:drinkId" component={ DrinkDetails } />
+      <Route exact path="/bebidas/:id/in-progress/" component={ DrinkInProgress } />
       <Route exact path="/" component={ Login } />
       <Route exact path="/perfil" component={ Perfil } />
       <Route exact path="/explorar" component={ Explorer } />

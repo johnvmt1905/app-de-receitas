@@ -3,12 +3,13 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
+import '../assets/css/recipeCard.css';
+import FavoriteBtn from './FavoriteBtn';
+import ShareBtn from './ShareBtn';
 
-function CardReceita(props) {
+function recipeCard(props, rota, pathname) {
   const { name, img, index, id } = props;
-  const { location: { pathname } } = useHistory();
   const sizePath = 4;
-  const rota = pathname.split('/');
 
   return (
     <Link
@@ -36,11 +37,85 @@ function CardReceita(props) {
   );
 }
 
+function favCard(props) {
+  const {
+    recipe: { name, image: img, id, category, type, alcoholicOrNot, area }, index, recipe,
+  } = props;
+  const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
+
+  return (
+    <div className="card-receitaFavorita">
+      <Link
+        to={ {
+          pathname: `${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`,
+          state: { id },
+        } }
+      >
+        <div data-testid={ `${index}-recipe-card` }>
+          <img
+            data-testid={ `${index}-horizontal-image` }
+            alt={ name }
+            src={ img }
+          />
+        </div>
+      </Link>
+      <div className="descriptions">
+        <div>
+          <h4 data-testid={ `${index}-horizontal-top-text` }>
+            { alcoholicOrNot === 'Alcoholic'
+              ? `${alcoholicOrNot} - ${category}` : `${area} - ${category}`}
+          </h4>
+          <Link
+            to={ {
+              pathname: `${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`,
+              state: { id },
+            } }
+            data-testid={ `${index}-horizontal-name` }
+          >
+            { name }
+          </Link>
+        </div>
+        <div className="descriptions-buttons">
+          <div>
+            <ShareBtn
+              link={ detailsLink }
+              pageTitle="Receitas Favoritas"
+              index={ index }
+            />
+          </div>
+          <div>
+            <FavoriteBtn
+              product={ recipe }
+              type={ type }
+              id={ id }
+              pageTitle="Receitas Favoritas"
+              index={ index }
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CardReceita(props) {
+  const { pageTitle } = props;
+
+  const { location: { pathname } } = useHistory();
+  const rota = pathname.split('/');
+  const favRecipes = () => pageTitle === 'Receitas Favoritas';
+  // colocar div quebra o css da pagina, entao deixei assim para passar o lint
+  return (
+    <>
+      {favRecipes() ? favCard(props)
+        : recipeCard(props, rota, pathname)}
+      {}
+    </>
+  );
+}
+
 CardReceita.propTypes = {
-  name: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string.isRequired,
 };
 
 export default CardReceita;

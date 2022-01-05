@@ -38,15 +38,8 @@ function Bebidas() {
     );
   }
 
-  // function notFound() {
-  //   return (
-  //     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-  //   );
-  // }
-
   return (
     <section>
-      {/* { drinks !== null ? showDrinks() : notFound() } */}
       {showDrinks()}
     </section>
   );

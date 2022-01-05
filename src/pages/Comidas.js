@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import CardReceita from '../components/CardReceita';
 import Context from '../context/AppContext';
-import Header from '../components/Header';
 import Filter from '../components/Filter';
 import Footer from '../components/Footer';
 import '../assets/css/foodContainers.css';
+import Header from '../components/Header';
 
 function Comidas() {
   const { data: { meals }, recipeIngredients } = useContext(Context);
@@ -39,15 +39,8 @@ function Comidas() {
     );
   }
 
-  // function notFound() {
-  //   return (
-  //     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-  //   );
-  // }
-
   return (
     <section>
-      {/* { meals !== null ? showReceitas() : notFound() } */}
       {showReceitas()}
     </section>
   );
