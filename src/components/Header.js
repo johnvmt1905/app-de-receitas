@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 import '../assets/css/header.css';
 import SearchBar from './SearchBar';
+import AppContext from '../context/AppContext';
 
 function searchBarIcon(toggleSearchBar, searchBar) {
   return (
@@ -34,24 +35,38 @@ function getRadioValue(value, setValue) {
   ));
 }
 
-function favoritePage() {
+function handleClick(name, setFilter, setHasFilter) {
+  if (name === 'All') {
+    setHasFilter(false);
+    setFilter(name);
+  }
+  if (name === 'comida' || name === 'bebida') {
+    setFilter(name);
+    setHasFilter(true);
+  }
+}
+
+function favoritePage(setFilter, setHasFilter) {
   return (
     <div className="favorite-filters">
       <button
         type="button"
         data-testid="filter-by-all-btn"
+        onClick={ () => handleClick('All', setFilter, setHasFilter) }
       >
         All
       </button>
       <button
         type="button"
         data-testid="filter-by-food-btn"
+        onClick={ () => handleClick('comida', setFilter, setHasFilter) }
       >
         Food
       </button>
       <button
         type="button"
         data-testid="filter-by-drink-btn"
+        onClick={ () => handleClick('bebida', setFilter, setHasFilter) }
       >
         Drinks
       </button>
@@ -67,6 +82,7 @@ function hasSearchBar(state, setValue) {
 
 // espera receber prop "pageTitle"  com o nome da página
 function Header({ pageTitle = 'nome da página' }) {
+  const { setFavFilter, setHasFilter } = useContext(AppContext);
   const HEADER_STATE = {
     value: '',
     radio: '',
@@ -115,7 +131,8 @@ function Header({ pageTitle = 'nome da página' }) {
           />
         </div>
       )}
-      {noSearchBar() ? favoritePage() : hasSearchBar(state, setValue)}
+      {noSearchBar() ? favoritePage(setFavFilter, setHasFilter)
+        : hasSearchBar(state, setValue)}
     </>
   );
 }

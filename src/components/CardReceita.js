@@ -50,7 +50,6 @@ function favCard(props) {
           state: { id },
         } }
       >
-        {console.log(recipe)}
         <div data-testid={ `${index}-recipe-card` }>
           <img
             data-testid={ `${index}-horizontal-image` }
