@@ -20,6 +20,8 @@ function AppProvider({ children }) {
   const [finishedRecipes, setFinishedRecipes] = useState([]);
 
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  const [favFilter, setFavFilter] = useState('');
+  const [hasFilter, setHasFilter] = useState(false);
 
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -60,6 +62,10 @@ function AppProvider({ children }) {
         setFinishedRecipes,
         favoriteRecipes,
         setFavoriteRecipes,
+        hasFilter,
+        setHasFilter,
+        favFilter,
+        setFavFilter,
       } }
     >
       {children}
