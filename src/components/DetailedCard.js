@@ -4,8 +4,8 @@ import { Card } from 'react-bootstrap';
 import Recommendations from './Recommendations';
 import StartRecipeBtn from './StartRecipeBtn';
 import FavoriteBtn from './FavoriteBtn';
-import ShareBtn from './ShareBtn';
 import Details from './Details';
+import ShareBtn from './ShareBtn';
 import '../assets/css/details.css';
 
 function CardDetails(props) {
