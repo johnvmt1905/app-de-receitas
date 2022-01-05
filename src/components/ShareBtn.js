@@ -8,10 +8,13 @@ function ShareBtn({ history, pageTitle, index, id, type }) {
 
   function handleShare() {
     setDisplayShareMessage(true);
-    if (pageTitle === 'Receitas Favoritas') {
+    const title = 'Receitas Favoritas';
+    if (pageTitle === title) {
       copy(`http://localhost:3000/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`);
     }
-    copy(`http://localhost:3000${history.location.pathname}`);
+    if (pageTitle !== title) {
+      copy(`http://localhost:3000${history.location.pathname}`);
+    }
   }
 
   function setTestId(title, i) {
