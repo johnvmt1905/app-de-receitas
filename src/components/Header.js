@@ -94,8 +94,8 @@ function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
 }
 
 Header.propTypes = {
+  needTheSearchBar: PropTypes.bool.isRequired,
   pageTitle: PropTypes.string.isRequired,
-  needTheSearchBar: PropTypes.string.isRequired,
 };
 
 export default Header;
