@@ -16,8 +16,7 @@ function ExploreFood() {
 
   return (
     <section>
-      <Header componentName="Explorar" />
-      <h1>Explorar</h1>
+      <Header pageTitle="Explorar Comidas" />
       <section>
         <Link to="/explorar/comidas/ingredientes">
           <button data-testid="explore-by-ingredient" type="button">

@@ -16,8 +16,7 @@ function ExploreDrinks() {
 
   return (
     <section>
-      <Header componentName="Explorar" />
-      <h1>Explorar</h1>
+      <Header pageTitle="Explorar Bebidas" />
       <section>
         <Link to="/explorar/bebidas/ingredientes">
           <button data-testid="explore-by-ingredient" type="button">
