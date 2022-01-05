@@ -35,7 +35,7 @@ function getRadioValue(value, setValue) {
 }
 
 // espera receber prop "pageTitle"  com o nome da página
-function Header({ pageTitle = 'nome da página' }) {
+function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
   const HEADER_STATE = {
     value: '',
     radio: '',
@@ -83,13 +83,19 @@ function Header({ pageTitle = 'nome da página' }) {
           />
         </div>
       )}
-      <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />
+      {needTheSearchBar
+        && <SearchBar
+          getRadioValue={ getRadioValue }
+          setValue={ setValue }
+          state={ state }
+        />}
     </>
   );
 }
 
 Header.propTypes = {
   pageTitle: PropTypes.string.isRequired,
+  needTheSearchBar: PropTypes.string.isRequired,
 };
 
 export default Header;
