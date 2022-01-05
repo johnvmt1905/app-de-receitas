@@ -1,31 +1,33 @@
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import { searchForFoodIngredient,
   searchByFoodName,
   searchForTheFirstLetterOfTheFood,
   searchForBeverageIngredient,
   searchNameOfDrink,
   searchForTheFirstLetterOfTheDrink } from '../services/searchApi';
+import Context from '../context/AppContext';
 
-function requestApi(radio, value, location) {
+function requestApi(radio, value, { location, history, setRecipeIngredients }) {
   if (location.pathname === '/comidas') {
     if (radio === 'Ingrediente') {
-      searchForFoodIngredient(value);
+      searchForFoodIngredient(value, history, setRecipeIngredients);
     } else if (radio === 'Nome') {
-      searchByFoodName(value);
+      searchByFoodName(value, history, setRecipeIngredients);
     } else if (radio === 'Primeira letra' && value.length < 2) {
-      searchForTheFirstLetterOfTheFood(value);
+      searchForTheFirstLetterOfTheFood(value, history, setRecipeIngredients);
     } else {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
   } else if (location.pathname === '/bebidas') {
     if (radio === 'Ingrediente') {
-      searchForBeverageIngredient(value);
+      searchForBeverageIngredient(value, history, setRecipeIngredients);
     } else if (radio === 'Nome') {
-      searchNameOfDrink(value);
+      searchNameOfDrink(value, history, setRecipeIngredients);
     } else if (radio === 'Primeira letra' && value.length < 2) {
-      searchForTheFirstLetterOfTheDrink(value);
+      searchForTheFirstLetterOfTheDrink(value, history, setRecipeIngredients);
     } else {
       global.alert('Sua busca deve conter somente 1 (um) caracter');
     }
@@ -34,6 +36,9 @@ function requestApi(radio, value, location) {
 
 function SearchBar({ getRadioValue, setValue, state: { radio, value } }) {
   const location = useLocation();
+  const history = useHistory();
+  const { setRecipeIngredients } = useContext(Context);
+  const objectOfFunctions = { location, history, setRecipeIngredients };
   return (
     <div className="search-bar">
       <div className="inputs-radio">
@@ -75,7 +80,7 @@ function SearchBar({ getRadioValue, setValue, state: { radio, value } }) {
         <button
           type="button"
           data-testid="exec-search-btn"
-          onClick={ () => requestApi(radio, value, location) }
+          onClick={ () => requestApi(radio, value, objectOfFunctions) }
         >
           Buscar
         </button>

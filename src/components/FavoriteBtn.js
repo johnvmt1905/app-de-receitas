@@ -4,7 +4,14 @@ import Context from '../context/AppContext';
 import BlackHeart from '../images/blackHeartIcon.svg';
 import WhiteHeart from '../images/whiteHeartIcon.svg';
 
-function FavoriteBtn({ product, id, type }) {
+function setTestId(title, i) {
+  if (title === 'Receitas Favoritas') {
+    return `${i}-horizontal-favorite-btn`;
+  }
+  return 'favorite-btn';
+}
+
+function FavoriteBtn({ product, id, type, pageTitle, index }) {
   const { favoriteRecipes, setFavoriteRecipes } = useContext(Context);
   const prod = product;
   const isFavorited = favoriteRecipes.find((recipe) => recipe.id === id);
@@ -34,7 +41,7 @@ function FavoriteBtn({ product, id, type }) {
 
   return (
     <input
-      data-testid="favorite-btn"
+      data-testid={ setTestId(pageTitle, index) }
       type="image"
       alt="Botão de favoritar"
       src={ isFavorited ? BlackHeart : WhiteHeart }
@@ -51,6 +58,8 @@ FavoriteBtn.propTypes = {
   id: PropTypes.string,
   product: PropTypes.shape({}).isRequired,
   type: PropTypes.string.isRequired,
+  index: PropTypes.number.isRequired,
+  pageTitle: PropTypes.string.isRequired,
 };
 
 export default FavoriteBtn;
