@@ -36,7 +36,7 @@ function getRadioValue(value, setValue) {
 
 function favoritePage() {
   return (
-    <div>
+    <div className="favorite-filters">
       <button
         type="button"
         data-testid="filter-by-all-btn"
@@ -56,6 +56,12 @@ function favoritePage() {
         Drinks
       </button>
     </div>
+  );
+}
+
+function hasSearchBar(state, setValue) {
+  return (
+    <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />
   );
 }
 
@@ -109,7 +115,7 @@ function Header({ pageTitle = 'nome da página' }) {
           />
         </div>
       )}
-      {noSearchBar() ? favoritePage() : <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />}
+      {noSearchBar() ? favoritePage() : hasSearchBar(state, setValue)}
     </>
   );
 }
