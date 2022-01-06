@@ -74,14 +74,19 @@ function favoritePage(setFilter, setHasFilter) {
   );
 }
 
-function hasSearchBar(state, setValue) {
+function hasSearchBar(state, setValue, needTheSearchBar) {
   return (
-    <SearchBar getRadioValue={ getRadioValue } setValue={ setValue } state={ state } />
+    needTheSearchBar
+    && <SearchBar
+      getRadioValue={ getRadioValue }
+      setValue={ setValue }
+      state={ state }
+    />
   );
 }
 
 // espera receber prop "pageTitle"  com o nome da página
-function Header({ pageTitle = 'nome da página' }) {
+function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
   const { setFavFilter, setHasFilter } = useContext(AppContext);
   const HEADER_STATE = {
     value: '',
@@ -132,12 +137,13 @@ function Header({ pageTitle = 'nome da página' }) {
         </div>
       )}
       {noSearchBar() ? favoritePage(setFavFilter, setHasFilter)
-        : hasSearchBar(state, setValue)}
+        : hasSearchBar(state, setValue, needTheSearchBar)}
     </>
   );
 }
 
 Header.propTypes = {
+  needTheSearchBar: PropTypes.string.isRequired,
   pageTitle: PropTypes.string.isRequired,
 };
 

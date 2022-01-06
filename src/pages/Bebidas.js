@@ -19,7 +19,7 @@ function Bebidas() {
     const MAX_DRINKS = 12;
     return (
       <div>
-        <Header pageTitle="Bebidas" />
+        <Header pageTitle="Bebidas" needTheSearchBar="true" />
         <Filter url="https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
           { selectRecipe().map(({ strDrink, strDrinkThumb, idDrink }, index) => (
@@ -38,15 +38,8 @@ function Bebidas() {
     );
   }
 
-  // function notFound() {
-  //   return (
-  //     global.alert('Sinto muito, não encontramos nenhuma receita para esses filtros.')
-  //   );
-  // }
-
   return (
     <section>
-      {/* { drinks !== null ? showDrinks() : notFound() } */}
       {showDrinks()}
     </section>
   );

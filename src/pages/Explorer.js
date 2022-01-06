@@ -6,8 +6,7 @@ import Header from '../components/Header';
 function Explorer() {
   return (
     <section>
-      <Header componentName="Explorar" />
-      <h1>Explorar</h1>
+      <Header pageTitle="Explorar" />
       <section>
         <Link to="/explorar/comidas">
           <button data-testid="explore-food" type="button">
