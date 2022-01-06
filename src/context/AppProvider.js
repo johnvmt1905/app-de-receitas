@@ -58,7 +58,6 @@ function AppProvider({ children }) {
     };
     getDataFromAPI();
     getFromLocalStorage();
-    searchForPlacesOfOrigin();
   }, []);
 
   return (
@@ -78,12 +77,13 @@ function AppProvider({ children }) {
         setFinishedRecipes,
         favoriteRecipes,
         setFavoriteRecipes,
-        placesOfOrigin,
         hasFilter,
         setHasFilter,
         favFilter,
         setFavFilter,
         places,
+        searchForPlacesOfOrigin,
+        placesOfOrigin,
         searchForFoodByArea,
       } }
     >
