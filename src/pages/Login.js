@@ -27,10 +27,6 @@ function Login() {
     history.push('/comidas');
   }
 
-  useEffect(() => {
-    setEmail('teste@email.com');
-    setPassword('aaaaaaaaaa');
-  }, []);
   return (
     <div className="login-container">
       <form>
@@ -54,7 +50,7 @@ function Login() {
             type="button"
             data-testid="login-submit-btn"
             disabled={ disableButton() }
-            // onClick={ submitButton }
+            onClick={ submitButton }
           >
             Entrar
           </button>
