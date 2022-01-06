@@ -8,14 +8,24 @@ import IngredientSteps from '../components/IngredientSteps';
 
 function InProgress(props) {
   const { history, match: { params: { id } } } = props;
-  const [product, setProduct] = useState({});
+  const [detailedProd, setDetailedProd] = useState({});
+  const [prod, setProd] = useState({});
   const detailsLink = `/bebidas/${id}`;
-  const type = 'drink';
 
   useEffect(() => {
     const getDataFromAPI = async () => {
       const fetchProduct = await searchByDrinkId(id);
-      setProduct(fetchProduct.drinks[0]);
+      const prodObj = {
+        id: fetchProduct.drinks[0].idDrink,
+        type: 'bebida',
+        area: '',
+        category: fetchProduct.drinks[0].strCategory,
+        alcoholicOrNot: fetchProduct.drinks[0].strAlcoholic,
+        name: fetchProduct.drinks[0].strDrink,
+        image: fetchProduct.drinks[0].strDrinkThumb,
+      };
+      setDetailedProd(fetchProduct.drinks[0]);
+      setProd(prodObj);
     };
     getDataFromAPI();
   }, [id]);
@@ -26,22 +36,22 @@ function InProgress(props) {
         data-testid="recipe-photo"
         variant="top"
         style={ { width: '100%', height: 300, objectFit: 'cover' } }
-        src={ product.strDrinkThumb }
+        src={ prod.image }
       />
       <Card.Body>
         <Card.Title data-testid="recipe-title">
-          { product.strDrink }
+          { prod.name }
         </Card.Title>
         <Card.Subtitle data-testid="recipe-category">
-          { product.strAlcoholic }
+          { prod.alcoholicOrNot }
         </Card.Subtitle>
         <div className="buttons">
-          <FavoriteBtn product={ product } type={ type } id={ id } />
+          <FavoriteBtn product={ prod } />
           <ShareBtn link={ detailsLink } />
         </div>
         <IngredientSteps
           history={ history }
-          product={ product }
+          product={ detailedProd }
           type="cocktails"
           id={ id }
         />

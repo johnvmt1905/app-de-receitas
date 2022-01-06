@@ -142,8 +142,12 @@ function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
   );
 }
 
+Header.defaultProps = {
+  needTheSearchBar: false,
+};
+
 Header.propTypes = {
-  needTheSearchBar: PropTypes.string.isRequired,
+  needTheSearchBar: PropTypes.bool,
   pageTitle: PropTypes.string.isRequired,
 };
 
