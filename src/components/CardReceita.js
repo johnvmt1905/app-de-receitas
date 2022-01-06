@@ -104,7 +104,8 @@ function CardReceita(props) {
 
   const { location: { pathname } } = useHistory();
   const rota = pathname.split('/');
-  const favRecipes = () => pageTitle === 'Receitas Favoritas';
+  const favRecipes = () => pageTitle === 'Receitas Favoritas'
+    || pageTitle === 'Receitas Feitas';
   // colocar div quebra o css da pagina, entao deixei assim para passar o lint
   return (
     <>

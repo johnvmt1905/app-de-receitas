@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import CardReceita from '../components/CardReceita';
+import '../assets/css/favorite.css';
 
 function MadeRecipes() {
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
@@ -16,14 +17,16 @@ function MadeRecipes() {
       <button type="button" data-testid="filter-by-drink-btn">
         Drinks
       </button>
-      { doneRecipes.map((recipe, index) => (
-        <CardReceita
-          key={ index }
-          pageTitle="Receitas Feitas"
-          index={ index }
-          recipe={ recipe }
-        />
-      )) }
+      <section className="card-favContainer">
+        { doneRecipes.map((recipe, index) => (
+          <CardReceita
+            pageTitle="Receitas Feitas"
+            key={ index }
+            index={ index }
+            recipe={ recipe }
+          />
+        )) }
+      </section>
     </div>
   );
 }
