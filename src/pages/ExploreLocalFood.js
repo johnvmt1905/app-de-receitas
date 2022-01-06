@@ -7,68 +7,70 @@ import '../assets/css/exploreLocal.css';
 
 function ExploreLocalFood() {
   const MAX_MEALS = 12;
-  const [filterByLocation, setFilterByLocation] = useState('All');
+  const [filterByLocation, setFilterByLocation] = useState('all');
   const {
     data: { meals },
-    // recipeIngredients,
     placesOfOrigin: { placesOfOrigin },
+    places,
+    searchForFoodByArea,
   } = useContext(Context);
 
-  function selectRecipes() {
-    // if (recipeIngredients.meals.length > 0) {
-    //   return recipeIngredients.meals;
-    // }
-    const data = meals.filter((element, index) => index < MAX_MEALS);
-    return data;
+  function handleChange({ target: { value } }) {
+    searchForFoodByArea(value);
+    setFilterByLocation(value);
   }
 
-  function handleChange({ target: { value } }) {
-    setFilterByLocation(value);
+  function assembleCards(data) {
+    return (
+      data.map(
+        ({ strMeal, strMealThumb, idMeal }, index) => index < MAX_MEALS && (
+          <div>
+            <CardReceita
+              key={ index }
+              name={ strMeal }
+              img={ strMealThumb }
+              index={ index }
+              id={ idMeal }
+            />
+          </div>
+        ),
+      )
+    );
   }
 
   function showReceitas() {
     return (
       <div>
         <Header pageTitle="Explorar Origem" />
+
         <section className="section-select">
           <select
             onChange={ (event) => handleChange(event) }
             data-testid="explore-by-area-dropdown"
           >
-            <option value="All" data-testid="All-option">All</option>
-            {
-              placesOfOrigin
-                .map((element) => (
-                  <option
-                    value={ element }
-                    key={ element }
-                    data-testid={ `${element}-option` }
-                  >
-                    {element}
-                  </option>))
-            }
+            <option value="all" data-testid="All-option">
+              All
+            </option>
+            {placesOfOrigin.map((element) => (
+              <option
+                value={ element }
+                key={ element }
+                data-testid={ `${element}-option` }
+              >
+                {element}
+              </option>
+            ))}
           </select>
         </section>
 
         <section className="card-container">
-          {selectRecipes()
-            .map(
-              ({ strMeal, strMealThumb, idMeal }, index) => index < MAX_MEALS && (
-                <CardReceita
-                  key={ index }
-                  name={ strMeal }
-                  img={ strMealThumb }
-                  index={ index }
-                  id={ idMeal }
-                />
-              ),
-            )
-            .filter((element) => {
-              if (filterByLocation !== 'All') {
-                return element.strArea === filterByLocation;
-              } return selectRecipes();
-            })}
+          {filterByLocation === 'all' ? (
+            assembleCards(meals)
+          ) : (
+            assembleCards(places.meals)
+          )}
         </section>
+
         <Footer />
       </div>
     );
