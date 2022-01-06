@@ -105,7 +105,12 @@ function Details({ product, type, id, history }) {
       <Card.Text data-testid="instructions">
         { prod.strInstructions }
       </Card.Text>
-      <FinishRecipeBtn history={ history } checkboxes={ state } />
+      <FinishRecipeBtn
+        type={ type }
+        product={ prod }
+        history={ history }
+        checkboxes={ state }
+      />
     </div>
   );
 }
