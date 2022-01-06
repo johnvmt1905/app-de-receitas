@@ -24,6 +24,7 @@ function AppProvider({ children }) {
   const [hasFilter, setHasFilter] = useState(false);
 
   const [placesOfOrigin, setPlacesOfOrigin] = useState({ placesOfOrigin: [] });
+  const [places, setPlaces] = useState({ meals: [] });
 
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -39,6 +40,11 @@ function AppProvider({ children }) {
     setPlacesOfOrigin({
       placesOfOrigin: response.meals.map((element) => element.strArea),
     });
+  };
+
+  const searchForFoodByArea = async (place) => {
+    const response = await fetchAPI(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${place}`);
+    setPlaces({ meals: response.meals });
   };
 
   useEffect(() => {
@@ -77,6 +83,8 @@ function AppProvider({ children }) {
         setHasFilter,
         favFilter,
         setFavFilter,
+        places,
+        searchForFoodByArea,
       } }
     >
       {children}
