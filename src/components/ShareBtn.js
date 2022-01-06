@@ -30,10 +30,14 @@ function ShareBtn({ link, pageTitle, index }) {
     </div>
   );
 }
+ShareBtn.defaultProps = {
+  index: '',
+  pageTitle: '',
+};
 
 ShareBtn.propTypes = {
-  index: PropTypes.number.isRequired,
-  pageTitle: PropTypes.string.isRequired,
+  index: PropTypes.string,
+  pageTitle: PropTypes.string,
   link: PropTypes.string.isRequired,
 };
 

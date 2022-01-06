@@ -42,6 +42,7 @@ function favCard(props) {
     recipe: { name, image: img, id, category, type, alcoholicOrNot, area }, index, recipe,
   } = props;
   const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
+  const typeForManipulation = type === 'comida' ? 'meal' : 'drink';
 
   return (
     <div className="card-receitaFavorita">
@@ -86,7 +87,7 @@ function favCard(props) {
           <div>
             <FavoriteBtn
               product={ recipe }
-              type={ type }
+              type={ typeForManipulation }
               id={ id }
               pageTitle="Receitas Favoritas"
               index={ index }
@@ -114,8 +115,12 @@ function CardReceita(props) {
   );
 }
 
+CardReceita.defaultProps = {
+  pageTitle: '',
+};
+
 CardReceita.propTypes = {
-  pageTitle: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string,
 };
 
 export default CardReceita;
