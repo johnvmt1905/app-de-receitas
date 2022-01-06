@@ -10,14 +10,22 @@ import '../assets/css/details.css';
 
 function CardDetails(props) {
   const { product, type, history } = props;
-  const prod = product;
-  const id = prod.idMeal || prod.idDrink;
-  const detailsLink = `/${type === 'meal' ? 'comidas' : 'bebidas'}/${id}`;
+  const detailedProd = product;
   let embed;
-  if (prod.strYoutube) {
+  const prod = {
+    id: detailedProd.idMeal || detailedProd.idDrink,
+    type: type === 'meal' ? 'comida' : 'bebida',
+    area: detailedProd.strArea || '',
+    category: detailedProd.strCategory || '',
+    alcoholicOrNot: detailedProd.strAlcoholic || '',
+    name: detailedProd.strMeal || detailedProd.strDrink,
+    image: detailedProd.strMealThumb || detailedProd.strDrinkThumb,
+  };
+  if (detailedProd.strYoutube) {
     // Referência: https://stackoverflow.com/questions/573145/get-everything-after-the-dash-in-a-string-in-javascript
-    embed = `https://www.youtube.com/embed/${prod.strYoutube.split('watch?v=')[1]}`;
+    embed = `https://www.youtube.com/embed/${detailedProd.strYoutube.split('watch?v=')[1]}`;
   }
+  const detailsLink = `/${type === 'meal' ? 'comidas' : 'bebidas'}/${prod.id}`;
 
   return (
     <div>
@@ -26,21 +34,21 @@ function CardDetails(props) {
           data-testid="recipe-photo"
           variant="top"
           style={ { width: 'auto', height: 300, objectFit: 'cover' } }
-          src={ type === 'meal' ? prod.strMealThumb : prod.strDrinkThumb }
+          src={ prod.image }
         />
         <Card.Body>
           <Card.Title data-testid="recipe-title">
-            { prod.strMeal || prod.strDrink }
+            { prod.name }
           </Card.Title>
           <Card.Subtitle data-testid="recipe-category">
-            { type === 'meal' ? prod.strCategory : prod.strAlcoholic }
+            { type === 'meal' ? prod.category : prod.alcoholicOrNot }
           </Card.Subtitle>
           <div className="buttons">
-            <FavoriteBtn product={ prod } type={ type } id={ id } />
+            <FavoriteBtn product={ prod } />
             <ShareBtn link={ detailsLink } />
           </div>
         </Card.Body>
-        <Details product={ prod } />
+        <Details product={ detailedProd } />
         { type === 'meal'
           && <iframe
             width="560"
@@ -55,7 +63,7 @@ function CardDetails(props) {
         <Card.Title>Recomendadas</Card.Title>
         <Recommendations type={ type } />
       </Card>
-      <StartRecipeBtn history={ history } type={ type } id={ id } />
+      <StartRecipeBtn history={ history } type={ type } id={ prod.id } />
     </div>
   );
 }

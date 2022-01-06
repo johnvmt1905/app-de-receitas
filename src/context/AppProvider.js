@@ -24,6 +24,7 @@ function AppProvider({ children }) {
   const [hasFilter, setHasFilter] = useState(false);
 
   const [placesOfOrigin, setPlacesOfOrigin] = useState({ placesOfOrigin: [] });
+  const [places, setPlaces] = useState({ meals: [] });
 
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
@@ -41,6 +42,11 @@ function AppProvider({ children }) {
     });
   };
 
+  const searchForFoodByArea = async (place) => {
+    const response = await fetchAPI(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${place}`);
+    setPlaces({ meals: response.meals });
+  };
+
   useEffect(() => {
     const getFromLocalStorage = () => {
       const favoritesLS = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -52,7 +58,6 @@ function AppProvider({ children }) {
     };
     getDataFromAPI();
     getFromLocalStorage();
-    searchForPlacesOfOrigin();
   }, []);
 
   return (
@@ -72,11 +77,14 @@ function AppProvider({ children }) {
         setFinishedRecipes,
         favoriteRecipes,
         setFavoriteRecipes,
-        placesOfOrigin,
         hasFilter,
         setHasFilter,
         favFilter,
         setFavFilter,
+        places,
+        searchForPlacesOfOrigin,
+        placesOfOrigin,
+        searchForFoodByArea,
       } }
     >
       {children}

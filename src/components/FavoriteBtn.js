@@ -11,31 +11,21 @@ function setTestId(title, i) {
   return 'favorite-btn';
 }
 
-function FavoriteBtn({ product, id, type, pageTitle, index }) {
+function FavoriteBtn({ product, pageTitle, index }) {
   const { favoriteRecipes, setFavoriteRecipes } = useContext(Context);
   const prod = product;
-  const isFavorited = favoriteRecipes.find((recipe) => recipe.id === id);
+  const isFavorited = favoriteRecipes.find((recipe) => recipe.id === prod.id);
 
   function handleFavorite() {
+    const preLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
     if (isFavorited) {
-      const preLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      const finalArr = preLocal.filter((data) => data[id] !== prod[id]);
+      const finalArr = preLocal.filter((recipe) => recipe.id !== prod.id);
       localStorage.setItem('favoriteRecipes', JSON.stringify(finalArr));
-      setFavoriteRecipes(favoriteRecipes.filter((recipe) => recipe.id !== id));
+      setFavoriteRecipes(favoriteRecipes.filter((recipe) => recipe.id !== prod.id));
     } else {
-      const preLocal = JSON.parse(localStorage.getItem('favoriteRecipes'));
-      const prodObj = {
-        id,
-        type: type === 'meal' ? 'comida' : 'bebida',
-        area: prod.strArea || '',
-        category: prod.strCategory || '',
-        alcoholicOrNot: prod.strAlcoholic || '',
-        name: prod.strMeal || prod.strDrink,
-        image: prod.strMealThumb || prod.strDrinkThumb,
-      };
-      const finalArr = preLocal ? [...preLocal, prodObj] : [prodObj];
+      const finalArr = preLocal ? [...preLocal, prod] : [prod];
       localStorage.setItem('favoriteRecipes', JSON.stringify(finalArr));
-      setFavoriteRecipes([...favoriteRecipes, prodObj]);
+      setFavoriteRecipes([...favoriteRecipes, prod]);
     }
   }
 
@@ -51,15 +41,14 @@ function FavoriteBtn({ product, id, type, pageTitle, index }) {
 }
 
 FavoriteBtn.defaultProps = {
-  id: '',
+  index: '',
+  pageTitle: '',
 };
 
 FavoriteBtn.propTypes = {
-  id: PropTypes.string,
   product: PropTypes.shape({}).isRequired,
-  type: PropTypes.string.isRequired,
-  index: PropTypes.number.isRequired,
-  pageTitle: PropTypes.string.isRequired,
+  index: PropTypes.string,
+  pageTitle: PropTypes.string,
 };
 
 export default FavoriteBtn;

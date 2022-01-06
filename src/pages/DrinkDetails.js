@@ -31,7 +31,7 @@ DrinkDetails.propTypes = {
   history: PropTypes.shape({}).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
-      drinkId: PropTypes.number.isRequired,
+      drinkId: PropTypes.string.isRequired,
     }).isRequired,
   }).isRequired,
 };
