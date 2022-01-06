@@ -10,8 +10,8 @@ import FavoriteRecipes from '../pages/FavoriteRecipes';
 import MadeRecipes from '../pages/MadeRecipes';
 import ExploreFood from '../pages/ExploreFood';
 import ExploreDrinks from '../pages/ExploreDrinks';
-import ExploreFoodIngredient from '../pages/ExploreFoodIngredient';
-import ExploreDrinkIngredient from '../pages/ExploreDrinkIngredient';
+import ExploreIngredient from '../pages/ExploreIngredient';
+// import ExploreDrinkIngredient from '../pages/ExploreDrinkIngredient';
 import ExploreLocalFood from '../pages/ExploreLocalFood';
 import MealDetails from '../pages/MealDetails';
 import DrinkDetails from '../pages/DrinkDetails';
@@ -35,12 +35,12 @@ function Routes() {
       <Route
         exact
         path="/explorar/comidas/ingredientes"
-        component={ ExploreFoodIngredient }
+        component={ ExploreIngredient }
       />
       <Route
         exact
         path="/explorar/bebidas/ingredientes"
-        component={ ExploreDrinkIngredient }
+        component={ ExploreIngredient }
       />
       <Route exact path="/explorar/comidas/area" component={ ExploreLocalFood } />
       <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />

@@ -11,7 +11,8 @@ function AppProvider({ children }) {
 
   const [data, setData] = useState(INITIAL_STATE);
 
-  const [recipeIngredients, setRecipeIngredients] = useState(INITIAL_STATE);
+  const [recipeIngredients, setRecipeIngredients] = useState({ meals: [],
+    drinks: [] });
 
   const [comida, setComida] = useState([]);
   const [drinks, setDrinks] = useState([]);
