@@ -8,14 +8,24 @@ import IngredientSteps from '../components/IngredientSteps';
 
 function InProgress(props) {
   const { history, match: { params: { id } } } = props;
-  const [product, setProduct] = useState({});
+  const [detailedProd, setDetailedProd] = useState({});
+  const [prod, setProd] = useState({});
   const detailsLink = `/comidas/${id}`;
-  const type = 'meal';
 
   useEffect(() => {
     const getDataFromAPI = async () => {
       const fetchProduct = await searchByMealId(id);
-      setProduct(fetchProduct.meals[0]);
+      const prodObj = {
+        id: fetchProduct.meals[0].idMeal,
+        type: 'comida',
+        area: fetchProduct.meals[0].strArea,
+        category: fetchProduct.meals[0].strCategory,
+        alcoholicOrNot: '',
+        name: fetchProduct.meals[0].strMeal,
+        image: fetchProduct.meals[0].strMealThumb,
+      };
+      setDetailedProd(fetchProduct.meals[0]);
+      setProd(prodObj);
     };
     getDataFromAPI();
   }, [id]);
@@ -26,22 +36,22 @@ function InProgress(props) {
         data-testid="recipe-photo"
         variant="top"
         style={ { width: '100%', height: 300, objectFit: 'cover' } }
-        src={ product.strMealThumb }
+        src={ prod.image }
       />
       <Card.Body>
         <Card.Title data-testid="recipe-title">
-          { product.strMeal }
+          { prod.name }
         </Card.Title>
         <Card.Subtitle data-testid="recipe-category">
-          { product.strCategory }
+          { prod.category }
         </Card.Subtitle>
         <div className="buttons">
-          <FavoriteBtn product={ product } type={ type } id={ id } />
+          <FavoriteBtn product={ prod } />
           <ShareBtn link={ detailsLink } />
         </div>
         <IngredientSteps
           history={ history }
-          product={ product }
+          product={ detailedProd }
           type="meals"
           id={ id }
         />

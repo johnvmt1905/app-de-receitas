@@ -23,6 +23,9 @@ function AppProvider({ children }) {
   const [favFilter, setFavFilter] = useState('');
   const [hasFilter, setHasFilter] = useState(false);
 
+  const [placesOfOrigin, setPlacesOfOrigin] = useState({ placesOfOrigin: [] });
+  const [places, setPlaces] = useState({ meals: [] });
+
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const drinksList = await fetchAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
@@ -30,6 +33,18 @@ function AppProvider({ children }) {
       meals: mealsList.meals,
       drinks: drinksList.drinks,
     });
+  };
+
+  const searchForPlacesOfOrigin = async () => {
+    const response = await fetchAPI('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
+    setPlacesOfOrigin({
+      placesOfOrigin: response.meals.map((element) => element.strArea),
+    });
+  };
+
+  const searchForFoodByArea = async (place) => {
+    const response = await fetchAPI(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${place}`);
+    setPlaces({ meals: response.meals });
   };
 
   useEffect(() => {
@@ -66,6 +81,10 @@ function AppProvider({ children }) {
         setHasFilter,
         favFilter,
         setFavFilter,
+        places,
+        searchForPlacesOfOrigin,
+        placesOfOrigin,
+        searchForFoodByArea,
       } }
     >
       {children}

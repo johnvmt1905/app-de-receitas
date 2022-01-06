@@ -36,10 +36,10 @@ function FinishRecipeBtn({ checkboxes, history }) {
 }
 
 FinishRecipeBtn.propTypes = {
-  checkboxes: PropTypes.shape([]).isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  checkboxes: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default FinishRecipeBtn;

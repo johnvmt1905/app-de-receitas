@@ -17,7 +17,7 @@ function Details({ product, type, id, history }) {
     setMeasures(Object.keys(prod)
       .filter((key) => key.includes('Measure') && prod[key] !== null && prod[key] !== '')
       .map((key) => prod[key]));
-  }, [product]);
+  }, [prod]);
 
   useEffect(() => {
     const INITIAL_STATE = ingredients.map((ingredient) => ({
@@ -26,9 +26,19 @@ function Details({ product, type, id, history }) {
     }));
 
     function checkLocalStorage() {
-      if (!localStorage.getItem('inProgressRecipes')) {
-        localStorage.setItem('inProgressRecipes',
-          JSON.stringify({ [type]: { [id]: [] } }));
+      const objForLocalStorage = { [type]: { [id]: [] } };
+      const fetchFromLocalStorage = JSON.parse(localStorage.getItem('inProgressRecipes'));
+      if (!fetchFromLocalStorage) {
+        localStorage.setItem('inProgressRecipes', JSON.stringify(objForLocalStorage));
+      } else if (!fetchFromLocalStorage[type]) {
+        const newLocalStorage = { ...fetchFromLocalStorage, [type]: { [id]: [] } };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(newLocalStorage));
+      } else if (!fetchFromLocalStorage[type][id]) {
+        const newLocalStorage = {
+          ...fetchFromLocalStorage,
+          [type]: { ...fetchFromLocalStorage[type], [id]: [] },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(newLocalStorage));
       }
       const localStorageItem = JSON.parse(
         localStorage.getItem('inProgressRecipes'),
