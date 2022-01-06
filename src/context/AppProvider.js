@@ -58,6 +58,7 @@ function AppProvider({ children }) {
     };
     getDataFromAPI();
     getFromLocalStorage();
+    searchForPlacesOfOrigin();
   }, []);
 
   return (
