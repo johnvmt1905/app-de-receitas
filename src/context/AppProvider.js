@@ -11,8 +11,7 @@ function AppProvider({ children }) {
 
   const [data, setData] = useState(INITIAL_STATE);
 
-  const [recipeIngredients, setRecipeIngredients] = useState({ meals: [],
-    drinks: [] });
+  const [recipeIngredients, setRecipeIngredients] = useState(INITIAL_STATE);
 
   const [comida, setComida] = useState([]);
   const [drinks, setDrinks] = useState([]);
@@ -24,21 +23,12 @@ function AppProvider({ children }) {
   const [favFilter, setFavFilter] = useState('');
   const [hasFilter, setHasFilter] = useState(false);
 
-  const [placesOfOrigin, setPlacesOfOrigin] = useState({ placesOfOrigin: [] });
-
   const getDataFromAPI = async () => {
     const mealsList = await fetchAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     const drinksList = await fetchAPI('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
     setData({
       meals: mealsList.meals,
       drinks: drinksList.drinks,
-    });
-  };
-
-  const searchForPlacesOfOrigin = async () => {
-    const response = await fetchAPI('https://www.themealdb.com/api/json/v1/1/list.php?a=list');
-    setPlacesOfOrigin({
-      placesOfOrigin: response.meals.map((element) => element.strArea),
     });
   };
 
@@ -53,7 +43,6 @@ function AppProvider({ children }) {
     };
     getDataFromAPI();
     getFromLocalStorage();
-    searchForPlacesOfOrigin();
   }, []);
 
   return (
@@ -73,7 +62,6 @@ function AppProvider({ children }) {
         setFinishedRecipes,
         favoriteRecipes,
         setFavoriteRecipes,
-        placesOfOrigin,
         hasFilter,
         setHasFilter,
         favFilter,
