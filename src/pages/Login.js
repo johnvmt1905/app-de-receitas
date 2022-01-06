@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
+import '../assets/css/login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -26,29 +27,40 @@ function Login() {
     history.push('/comidas');
   }
 
+  useEffect(() => {
+    setEmail('teste@email.com');
+    setPassword('aaaaaaaaaa');
+  }, []);
   return (
-    <form>
-      <input
-        value={ email }
-        type="email"
-        data-testid="email-input"
-        onChange={ ({ target }) => setEmail(target.value) }
-      />
-      <input
-        value={ password }
-        type="password"
-        data-testid="password-input"
-        onChange={ ({ target }) => setPassword(target.value) }
-      />
-      <button
-        type="button"
-        data-testid="login-submit-btn"
-        disabled={ disableButton() }
-        onClick={ submitButton }
-      >
-        Entrar
-      </button>
-    </form>
+    <div className="login-container">
+      <form>
+        <h3>App de Receitas</h3>
+        <div>
+          <input
+            placeholder="Email"
+            value={ email }
+            type="email"
+            data-testid="email-input"
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+          <input
+            placeholder="Senha"
+            value={ password }
+            type="password"
+            data-testid="password-input"
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+          <button
+            type="button"
+            data-testid="login-submit-btn"
+            disabled={ disableButton() }
+            // onClick={ submitButton }
+          >
+            Entrar
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
