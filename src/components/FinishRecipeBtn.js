@@ -10,6 +10,11 @@ function FinishRecipeBtn({ checkboxes, product, type }) {
   const [state, setState] = useState(INITIAL_STATE);
   const historyHook = useHistory();
 
+  function setTags(tags) {
+    if (!tags) return [];
+    return tags.split(', ');
+  }
+
   useEffect(() => {
     const checkCheckboxes = checkboxes
       .filter((checkbox) => checkbox.isChecked === true);
@@ -37,7 +42,7 @@ function FinishRecipeBtn({ checkboxes, product, type }) {
       name: prod.strMeal || prod.strDrink,
       image: prod.strMealThumb || prod.strDrinkThumb,
       doneDate: dataAtual,
-      tags: prod.strTags.split(', '),
+      tags: setTags(prod.strTags),
     };
     if (!localStorageItems) {
       localStorageItems = [];
