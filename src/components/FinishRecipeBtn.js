@@ -37,7 +37,7 @@ function FinishRecipeBtn({ checkboxes, product, type }) {
       name: prod.strMeal || prod.strDrink,
       image: prod.strMealThumb || prod.strDrinkThumb,
       doneDate: dataAtual,
-      tags: prod.strTags,
+      tags: prod.strTags.split(', '),
     };
     if (!localStorageItems) {
       localStorageItems = [];

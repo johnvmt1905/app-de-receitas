@@ -45,6 +45,21 @@ function favCard(props) {
   const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
   const typeForManipulation = type === 'comida' ? 'meal' : 'drink';
 
+  function mapTags() {
+    if (type === 'comida') {
+      const returno = tags.map((t) => (
+        <h4
+          key={ t }
+          className="madeRecipe"
+          data-testid={ `${index}-${t}-horizontal-tag` }
+        >
+          { t }
+        </h4>
+      ));
+      return returno;
+    }
+  }
+
   return (
     <div className="card-receitaFavorita">
       <Link
@@ -102,13 +117,7 @@ function favCard(props) {
                   { doneDate }
 
                 </h4>
-                <h4
-                  className="madeRecipe"
-                  data-testid={ `${index}-${tags}-horizontal-tag` }
-                >
-                  { tags }
-
-                </h4>
+                {mapTags()}
               </div>
             ) : null }
           </div>
@@ -125,7 +134,6 @@ function CardReceita(props) {
   const rota = pathname.split('/');
   const favRecipes = () => pageTitle === 'Receitas Favoritas'
     || pageTitle === 'Receitas Feitas';
-  // colocar div quebra o css da pagina, entao deixei assim para passar o lint
   return (
     <>
       {favRecipes() ? favCard(props)
