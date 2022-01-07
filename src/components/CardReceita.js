@@ -39,10 +39,26 @@ function recipeCard(props, rota, pathname) {
 
 function favCard(props) {
   const {
-    recipe: { name, image: img, id, category, type, alcoholicOrNot, area }, index, recipe,
-  } = props;
+    recipe: { name, image: img, id, category, type,
+      alcoholicOrNot, area, doneDate, tags },
+    index, recipe, pageTitle } = props;
   const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
   const typeForManipulation = type === 'comida' ? 'meal' : 'drink';
+
+  function mapTags() {
+    if (type === 'comida') {
+      const returno = tags.map((t) => (
+        <h4
+          key={ t }
+          className="madeRecipe"
+          data-testid={ `${index}-${t}-horizontal-tag` }
+        >
+          { t }
+        </h4>
+      ));
+      return returno;
+    }
+  }
 
   return (
     <div className="card-receitaFavorita">
@@ -92,6 +108,18 @@ function favCard(props) {
               pageTitle="Receitas Favoritas"
               index={ index }
             />
+            { pageTitle === 'Receitas Feitas' ? (
+              <div>
+                <h4
+                  data-testid={ `${index}-horizontal-done-date` }
+                  className="madeRecipeDate"
+                >
+                  { doneDate }
+
+                </h4>
+                {mapTags()}
+              </div>
+            ) : null }
           </div>
         </div>
       </div>
@@ -104,8 +132,8 @@ function CardReceita(props) {
 
   const { location: { pathname } } = useHistory();
   const rota = pathname.split('/');
-  const favRecipes = () => pageTitle === 'Receitas Favoritas';
-  // colocar div quebra o css da pagina, entao deixei assim para passar o lint
+  const favRecipes = () => pageTitle === 'Receitas Favoritas'
+    || pageTitle === 'Receitas Feitas';
   return (
     <>
       {favRecipes() ? favCard(props)

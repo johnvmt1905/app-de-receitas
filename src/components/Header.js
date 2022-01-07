@@ -97,8 +97,9 @@ function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
   const [state, setValue] = useState(HEADER_STATE);
 
   const hasButton = () => pageTitle === 'Comidas'
-  || pageTitle === 'Bebidas' || pageTitle === 'Explorar Origem';
-  const noSearchBar = () => pageTitle === 'Receitas Favoritas';
+    || pageTitle === 'Bebidas' || pageTitle === 'Explorar Origem';
+  const noSearchBar = () => pageTitle === 'Receitas Favoritas'
+    || pageTitle === 'Receitas Feitas';
   const history = useHistory();
 
   return (
