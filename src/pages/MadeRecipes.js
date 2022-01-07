@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from '../components/Header';
 import CardReceita from '../components/CardReceita';
 import '../assets/css/favorite.css';
+import AppContext from '../context/AppContext';
 
 function MadeRecipes() {
+  const { hasFilter, favFilter } = useContext(AppContext);
+
   const doneRecipes = JSON.parse(localStorage.getItem('doneRecipes'));
+  function recipes() {
+    if (!doneRecipes) return [];
+    if (hasFilter) {
+      const filtered = doneRecipes.filter((recipe) => recipe.type === favFilter);
+      return filtered;
+    }
+    return doneRecipes;
+  }
   return (
     <div>
       <Header pageTitle="Receitas Feitas" />
-      <button type="button" data-testid="filter-by-all-btn">
-        All
-      </button>
-      <button type="button" data-testid="filter-by-food-btn">
-        Food
-      </button>
-      <button type="button" data-testid="filter-by-drink-btn">
-        Drinks
-      </button>
       <section className="card-favContainer">
-        { doneRecipes.map((recipe, index) => (
+        { recipes().map((recipe, index) => (
           <CardReceita
             pageTitle="Receitas Feitas"
             key={ index }
