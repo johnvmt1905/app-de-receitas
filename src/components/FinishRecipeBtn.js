@@ -30,7 +30,7 @@ function FinishRecipeBtn({ checkboxes, product, type }) {
     let localStorageItems = JSON.parse(localStorage.getItem('doneRecipes'));
     const prodObj = {
       id: prod.idMeal || prod.idDrink,
-      type: tipo === 'meal' ? 'comida' : 'bebida',
+      type: tipo === 'meals' ? 'comida' : 'bebida',
       area: prod.strArea || '',
       category: prod.strCategory || '',
       alcoholicOrNot: prod.strAlcoholic || '',
