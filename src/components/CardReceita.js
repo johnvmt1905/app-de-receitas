@@ -39,8 +39,9 @@ function recipeCard(props, rota, pathname) {
 
 function favCard(props) {
   const {
-    recipe: { name, image: img, id, category, type, alcoholicOrNot, area }, index, recipe,
-  } = props;
+    recipe: { name, image: img, id, category, type,
+      alcoholicOrNot, area, doneDate, tags },
+    index, recipe, pageTitle } = props;
   const detailsLink = `/${type === 'comida' ? 'comidas' : 'bebidas'}/${id}`;
   const typeForManipulation = type === 'comida' ? 'meal' : 'drink';
 
@@ -92,6 +93,24 @@ function favCard(props) {
               pageTitle="Receitas Favoritas"
               index={ index }
             />
+            { pageTitle === 'Receitas Feitas' ? (
+              <div>
+                <h4
+                  data-testid={ `${index}-horizontal-done-date` }
+                  className="madeRecipeDate"
+                >
+                  { doneDate }
+
+                </h4>
+                <h4
+                  className="madeRecipe"
+                  data-testid={ `${index}-${tags}-horizontal-tag` }
+                >
+                  { tags }
+
+                </h4>
+              </div>
+            ) : null }
           </div>
         </div>
       </div>
