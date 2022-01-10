@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import fetchAPI from '../fetchApi';
@@ -83,9 +82,5 @@ function Filter() {
     </nav>
   );
 }
-
-Filter.propTypes = {
-  URL_FILTER: PropTypes.string.isRequired,
-};
 
 export default Filter;
