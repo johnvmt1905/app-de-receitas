@@ -21,38 +21,30 @@ function Perfil() {
     history.push('/receitas-favoritas');
   }
 
-  function LogoutButton() {
-    localStorage.clear();
-    history.push('/');
-  }
-
   return (
     <div>
       <Header pageTitle="Perfil" />
       <h2 data-testid="profile-email">
         {email}
       </h2>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ recipesDone }
-      >
-        Receitas Feitas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ recipesFavorites }
-      >
-        Receitas Favoritas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ LogoutButton }
-      >
-        Sair
-      </button>
+      <nav className="category-container">
+        <div>
+          <button
+            type="button"
+            data-testid="profile-done-btn"
+            onClick={ recipesDone }
+          >
+            Receitas Feitas
+          </button>
+          <button
+            type="button"
+            data-testid="profile-favorite-btn"
+            onClick={ recipesFavorites }
+          >
+            Receitas Favoritas
+          </button>
+        </div>
+      </nav>
       <Footer />
     </div>
   );
