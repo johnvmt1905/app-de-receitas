@@ -1,8 +1,5 @@
-/* @font-face {
-  font-family: Montserrat;
-  src: url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap');
-} */
-
 body {
+  background-color: #f2f7f5;
   font-family: Merienda , cursive;
+  width: 100vw;
 }
