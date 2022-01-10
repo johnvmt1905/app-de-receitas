@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React, { useState, useEffect, useContext } from 'react';
 import { useHistory } from 'react-router';
 import fetchAPI from '../fetchApi';
@@ -5,15 +6,14 @@ import Context from '../context/AppContext';
 
 const INITIAL_STATE = [{ strCategory: 'All' }];
 
-function Filter() {
+function Filter({ url }) {
   const [firstTime, setFirstTime] = useState(true);
   const history = useHistory();
   const { location: { pathname } } = history;
   const { setData, data, getDataFromAPI } = useContext(Context);
+
   const [category, setCategory] = useState(INITIAL_STATE);
   const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const URL_FILTER = 'https://www.themealdb.com/api/json/v1/1/list.php?c=list';
 
   const filterByCategory = async (categoryToBeFilter) => {
     if (categoryToBeFilter === 'All') {
@@ -48,9 +48,9 @@ function Filter() {
 
   useEffect(() => {
     const getCategory = async () => {
-      const categoryFilter = await fetchAPI(URL_FILTER);
+      const categoryFilter = await fetchAPI(url);
       const MAX_CATEGORY = 5;
-      const page = URL_FILTER.split('www.')[1].split('.com')[0];
+      const page = url.split('www.')[1].split('.com')[0];
       if (page === 'themealdb') {
         setCategory([...category, ...categoryFilter.meals
           .filter((_, index) => index < MAX_CATEGORY)]);
@@ -63,24 +63,30 @@ function Filter() {
       getCategory();
       setFirstTime(false);
     }
-  }, [category, URL_FILTER, firstTime]);
+  }, [category, url, firstTime]);
 
   return (
     <nav className="category-container">
-      { category && category
-        .map((cat, index) => (
-          <button
-            className="category-button"
-            key={ index }
-            type="button"
-            data-testid={ `${cat.strCategory}-category-filter` }
-            onClick={ () => checkToggle(cat.strCategory) }
-          >
-            { cat.strCategory }
-          </button>
-        )) }
+      <div>
+        { category && category
+          .map((cat, index) => (
+            <button
+              className="category-button"
+              key={ index }
+              type="button"
+              data-testid={ `${cat.strCategory}-category-filter` }
+              onClick={ () => checkToggle(cat.strCategory) }
+            >
+              { cat.strCategory }
+            </button>
+          )) }
+      </div>
     </nav>
   );
 }
+
+Filter.propTypes = {
+  url: PropTypes.string.isRequired,
+};
 
 export default Filter;
