@@ -21,7 +21,7 @@ function Comidas() {
     return (
       <div>
         <Header pageTitle="Comidas" needTheSearchBar="true" />
-        <Filter url="https://www.themealdb.com/api/json/v1/1/list.php?c=list" />
+        <Filter />
         <section className="card-container">
           { selectRecipes().map(({ strMeal, strMealThumb, idMeal }, index) => (
             index < MAX_MEALS
