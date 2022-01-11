@@ -44,7 +44,7 @@ function InProgress(props) {
         </button>
       </header>
       <div className="image-container">
-        <div className="recomendation">
+        <div className="recipe-spects">
           <h2 data-testid="recipe-title">
             { prod.name }
           </h2>

@@ -40,7 +40,7 @@ function CardDetails(props) {
         </button>
       </header>
       <div className="image-container">
-        <div data-testid="recipe-card" className="recomendation">
+        <div data-testid="recipe-card" className="recipe-spects">
           <h2 data-testid="recipe-title">
             { prod.name }
           </h2>

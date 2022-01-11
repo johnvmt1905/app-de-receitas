@@ -24,15 +24,13 @@ function ExploreLocalFood() {
     return (
       data.map(
         ({ strMeal, strMealThumb, idMeal }, index) => index < MAX_MEALS && (
-          <div>
-            <CardReceita
-              key={ index }
-              name={ strMeal }
-              img={ strMealThumb }
-              index={ index }
-              id={ idMeal }
-            />
-          </div>
+          <CardReceita
+            key={ index }
+            name={ strMeal }
+            img={ strMealThumb }
+            index={ index }
+            id={ idMeal }
+          />
         ),
       )
     );
@@ -42,7 +40,6 @@ function ExploreLocalFood() {
     return (
       <div>
         <Header pageTitle="Explorar Origem" />
-
         <section className="section-select">
           <select
             onChange={ (event) => handleChange(event) }
@@ -64,11 +61,13 @@ function ExploreLocalFood() {
         </section>
 
         <section className="card-container">
-          {filterByLocation === 'all' ? (
-            assembleCards(meals)
-          ) : (
-            assembleCards(places.meals)
-          )}
+          <div>
+            {filterByLocation === 'all' ? (
+              assembleCards(meals)
+            ) : (
+              assembleCards(places.meals)
+            )}
+          </div>
         </section>
 
         <Footer />

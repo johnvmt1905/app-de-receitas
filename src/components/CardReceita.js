@@ -3,9 +3,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import '../assets/css/recipeCard.css';
+import '../assets/css/foodContainers.css';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
-import '../assets/css/foodContainers.css';
 
 function recipeCard(props, rota, pathname) {
   const { name, img, index, id } = props;

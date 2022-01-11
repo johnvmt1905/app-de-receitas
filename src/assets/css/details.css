@@ -27,7 +27,7 @@
   background-color: #fab743;
 }
 
-.recomendation {
+.recipe-spects {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -42,7 +42,7 @@
   width: 100vw;
 }
 
-.recomendation img {
+.recipe-spects img {
   border-radius: 5px;
 }
 
@@ -56,15 +56,30 @@
   width: 35px;
 }
 
-.start-recipe-btn {
-  background-color: #83a960;
-  border: 0;
+.start-recipe-btn-container {
   bottom: 0;
   color: white;
   height: 40px;
-  left: 0;
   position: fixed;
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.start-recipe-btn {
+  background-color: #faae2b;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.start-recipe-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 5px 1px rgba(0, 0, 0, 0.2);
 }
 
 .finish-recipe-btn {

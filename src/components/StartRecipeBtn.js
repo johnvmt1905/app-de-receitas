@@ -27,14 +27,16 @@ function StartRecipeBtn({ type, id, history }) {
   }
 
   return !isRecipeFinished && (
-    <button
-      type="button"
-      className="start-recipe-btn"
-      data-testid="start-recipe-btn"
-      onClick={ handleRecipeButton }
-    >
-      { isRecipeStarted ? 'Continuar Receita' : 'Iniciar Receita' }
-    </button>
+    <div className="start-recipe-btn-container">
+      <button
+        type="button"
+        className="start-recipe-btn"
+        data-testid="start-recipe-btn"
+        onClick={ handleRecipeButton }
+      >
+        { isRecipeStarted ? 'Continuar Receita' : 'Iniciar Receita' }
+      </button>
+    </div>
   );
 }
 

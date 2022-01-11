@@ -1,24 +1,25 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card } from 'react-bootstrap';
+import '../assets/css/recipeCard.css';
+
 
 function CardIngredients(props) {
   const { name, img, index } = props;
 
   return (
-    <section>
-      <Card data-testid={ `${index}-ingredient-card` } className="recomendation">
-        <Card.Img
-          data-testid={ `${index}-card-img` }
-          src={ img }
-        />
-        <Card.Body>
-          <Card.Title data-testid={ `${index}-card-name` }>
-            { name }
-          </Card.Title>
-        </Card.Body>
-      </Card>
-    </section>
+    <div data-testid={ `${index}-ingredient-card` }>
+      <img
+        alt="teste"
+        data-testid={ `${index}-card-img` }
+        src={ img }
+      />
+      <div>
+        <h3 data-testid={ `${index}-card-name` }>
+          { name }
+        </h3>
+      </div>
+    </div>
+
   );
 }
 
