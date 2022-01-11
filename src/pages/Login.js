@@ -32,7 +32,6 @@ function Login() {
     <div className="login-container">
       <form>
         <img src={ logo } alt="Receitas Houseiras logo" />
-        {/* Receitas Houseiras</img> */}
         <div>
           <input
             placeholder="Email"
