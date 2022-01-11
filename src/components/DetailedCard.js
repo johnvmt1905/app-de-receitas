@@ -64,8 +64,6 @@ function CardDetails(props) {
       <div className="recipe-details">
         { type === 'meal'
           && <iframe
-            width="560"
-            height="315"
             title={ prod.strTitle }
             src={ embed }
             allowFullScreen

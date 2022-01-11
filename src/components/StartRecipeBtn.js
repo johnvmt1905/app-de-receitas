@@ -27,7 +27,7 @@ function StartRecipeBtn({ type, id, history }) {
   }
 
   return !isRecipeFinished && (
-    <div className="start-recipe-btn-container">
+    <div className="make-recipe-btn-container">
       <button
         type="button"
         className="start-recipe-btn"
