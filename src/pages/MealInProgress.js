@@ -79,6 +79,7 @@ InProgress.propTypes = {
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
     }).isRequired,
+    push: PropTypes.func.isRequired,
   }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
