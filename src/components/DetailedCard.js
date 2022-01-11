@@ -26,9 +26,17 @@ function CardDetails(props) {
     embed = `https://www.youtube.com/embed/${detailedProd.strYoutube.split('watch?v=')[1]}`;
   }
   const detailsLink = `/${type === 'meal' ? 'comidas' : 'bebidas'}/${prod.id}`;
-
+  const returnButton = `/${type === 'meal' ? 'comidas' : 'bebidas'}`;
   return (
     <div>
+      <button
+        type="button"
+        onClick={ () => (
+          history.push(returnButton)
+        ) }
+      >
+        Voltar
+      </button>
       <Card data-testid="recipe-card" className="recomendation">
         <Card.Img
           data-testid="recipe-photo"
