@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router';
 import '../assets/css/recipeCard.css';
 import FavoriteBtn from './FavoriteBtn';
 import ShareBtn from './ShareBtn';
+import '../assets/css/foodContainers.css';
 
 function recipeCard(props, rota, pathname) {
   const { name, img, index, id } = props;
@@ -19,20 +19,19 @@ function recipeCard(props, rota, pathname) {
         state: { id },
       } }
     >
-      <Card data-testid={ `${index}-recipe-card` } className="recomendation">
-        <Card.Img
+      <div data-testid={ `${index}-recipe-card` } className="recomendation">
+        <img
           data-testid={ `${index}-card-img` }
           variant="top"
+          alt={ `imagem da receita ${name}` }
           src={ img }
         />
-        <Card.Body>
-          <div data-testid={ `${index}-recomendation-title` }>
-            <Card.Title data-testid={ `${index}-card-name` }>
-              { name }
-            </Card.Title>
-          </div>
-        </Card.Body>
-      </Card>
+        <div data-testid={ `${index}-recomendation-title` }>
+          <h3 data-testid={ `${index}-card-name` }>
+            { name }
+          </h3>
+        </div>
+      </div>
     </Link>
   );
 }
