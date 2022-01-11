@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import '../assets/css/recipeCard.css';
 
-
 function CardIngredients(props) {
   const { name, img, index } = props;
 
