@@ -40,7 +40,13 @@
   justify-content: flex-start;
   margin-bottom: 10px;
   margin-top: 10px;
+  transition: 0.3s;
   width: 400px;
+}
+
+.card-receitaFavorita:hover {
+  transform: translateY(-5px);
+
 }
 
 .card-receitaFavorita div img {
