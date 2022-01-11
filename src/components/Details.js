@@ -12,22 +12,20 @@ function Details({ product }) {
     .map((key) => prod[key]);
 
   return (
-    <div>
-      <div>
-        <Card.Title>Ingredients</Card.Title>
-        <ul>
-          { ingredients.map((ingredient, index) => (
-            <li
-              key={ `${ingredient}-${index}` }
-              data-testid={ `${index}-ingredient-name-and-measure` }
-            >
-              { measures[index]
-                ? `${measures[index]} of ${ingredient}`
-                : ingredient }
-            </li>
-          )) }
-        </ul>
-      </div>
+    <div className="recipe-details">
+      <Card.Title>Ingredients</Card.Title>
+      <ul>
+        { ingredients.map((ingredient, index) => (
+          <li
+            key={ `${ingredient}-${index}` }
+            data-testid={ `${index}-ingredient-name-and-measure` }
+          >
+            { measures[index]
+              ? `${measures[index]} of ${ingredient}`
+              : ingredient }
+          </li>
+        )) }
+      </ul>
       <div>
         <Card.Title>Instructions</Card.Title>
         <Card.Text data-testid="instructions">

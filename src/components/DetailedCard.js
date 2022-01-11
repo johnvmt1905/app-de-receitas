@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card } from 'react-bootstrap';
 import Recommendations from './Recommendations';
 import StartRecipeBtn from './StartRecipeBtn';
 import FavoriteBtn from './FavoriteBtn';
@@ -28,35 +27,41 @@ function CardDetails(props) {
   const detailsLink = `/${type === 'meal' ? 'comidas' : 'bebidas'}/${prod.id}`;
   const returnButton = `/${type === 'meal' ? 'comidas' : 'bebidas'}`;
   return (
-    <div>
-      <button
-        type="button"
-        onClick={ () => (
-          history.push(returnButton)
-        ) }
-      >
-        Voltar
-      </button>
-      <Card data-testid="recipe-card" className="recomendation">
-        <Card.Img
-          data-testid="recipe-photo"
-          variant="top"
-          style={ { width: 'auto', height: 300, objectFit: 'cover' } }
-          src={ prod.image }
-        />
-        <Card.Body>
-          <Card.Title data-testid="recipe-title">
+    <div className="details-body">
+      <header>
+        <button
+          className="return-button"
+          type="button"
+          onClick={ () => (
+            history.push(returnButton)
+          ) }
+        >
+          Voltar
+        </button>
+      </header>
+      <div className="image-container">
+        <div data-testid="recipe-card" className="recomendation">
+          <h2 data-testid="recipe-title">
             { prod.name }
-          </Card.Title>
-          <Card.Subtitle data-testid="recipe-category">
+          </h2>
+          <p data-testid="recipe-category">
             { type === 'meal' ? prod.category : prod.alcoholicOrNot }
-          </Card.Subtitle>
-          <div className="buttons">
+          </p>
+          <img
+            data-testid="recipe-photo"
+            alt={ `imagem da receita ${prod.name}` }
+            variant="top"
+            style={ { width: 'auto', height: 300, objectFit: 'cover' } }
+            src={ prod.image }
+          />
+          <div className="detail-buttons">
             <FavoriteBtn product={ prod } />
             <ShareBtn link={ detailsLink } />
           </div>
-        </Card.Body>
-        <Details product={ detailedProd } />
+        </div>
+      </div>
+      <Details product={ detailedProd } />
+      <div className="recipe-details">
         { type === 'meal'
           && <iframe
             width="560"
@@ -66,11 +71,11 @@ function CardDetails(props) {
             allowFullScreen
             data-testid="video"
           /> }
-      </Card>
-      <Card>
-        <Card.Title>Recomendadas</Card.Title>
+      </div>
+      <div className="recipe-details">
+        <h3>Recomendadas</h3>
         <Recommendations type={ type } />
-      </Card>
+      </div>
       <StartRecipeBtn history={ history } type={ type } id={ prod.id } />
     </div>
   );
