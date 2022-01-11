@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Card } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { searchByMealId } from '../services/searchApi';
 import FavoriteBtn from '../components/FavoriteBtn';
@@ -11,7 +10,8 @@ function InProgress(props) {
   const [detailedProd, setDetailedProd] = useState({});
   const [prod, setProd] = useState({});
   const detailsLink = `/comidas/${id}`;
-
+  const { location: { pathname } } = history;
+  const DOZE_CHAR = 12;
   useEffect(() => {
     const getDataFromAPI = async () => {
       const fetchProduct = await searchByMealId(id);
@@ -31,37 +31,55 @@ function InProgress(props) {
   }, [id]);
 
   return (
-    <div>
-      <Card.Img
-        data-testid="recipe-photo"
-        variant="top"
-        style={ { width: '100%', height: 300, objectFit: 'cover' } }
-        src={ prod.image }
-      />
-      <Card.Body>
-        <Card.Title data-testid="recipe-title">
-          { prod.name }
-        </Card.Title>
-        <Card.Subtitle data-testid="recipe-category">
-          { prod.category }
-        </Card.Subtitle>
-        <div className="buttons">
-          <FavoriteBtn product={ prod } />
-          <ShareBtn link={ detailsLink } />
+    <div className="details-body">
+      <header>
+        <button
+          className="return-button"
+          type="button"
+          onClick={ () => (
+            history.push(pathname.substr(0, pathname.length - DOZE_CHAR))
+          ) }
+        >
+          Voltar
+        </button>
+      </header>
+      <div className="image-container">
+        <div className="recomendation">
+          <h2 data-testid="recipe-title">
+            { prod.name }
+          </h2>
+          <p data-testid="recipe-category">
+            { prod.category }
+          </p>
+          <img
+            data-testid="recipe-photo"
+            variant="top"
+            alt="foto da receita"
+            style={ { width: '100%', height: 300, objectFit: 'cover' } }
+            src={ prod.image }
+          />
+          <div className="detail-buttons">
+            <FavoriteBtn product={ prod } />
+            <ShareBtn link={ detailsLink } />
+          </div>
         </div>
-        <IngredientSteps
-          history={ history }
-          product={ detailedProd }
-          type="meals"
-          id={ id }
-        />
-      </Card.Body>
+      </div>
+      <IngredientSteps
+        history={ history }
+        product={ detailedProd }
+        type="meals"
+        id={ id }
+      />
     </div>
   );
 }
 
 InProgress.propTypes = {
-  history: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      pathname: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   match: PropTypes.shape({
     params: PropTypes.shape({
       id: PropTypes.string.isRequired,
