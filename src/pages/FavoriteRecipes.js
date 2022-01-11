@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import Header from '../components/Header';
 import CardReceita from '../components/CardReceita';
-import '../assets/css/favorite.css';
 import AppContext from '../context/AppContext';
 
 function FavoriteRecipes() {
