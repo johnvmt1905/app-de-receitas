@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../assets/css/perfilStyles.css';
 
 function Perfil() {
   const localUserData = localStorage.getItem('user');
@@ -22,11 +23,13 @@ function Perfil() {
   }
 
   return (
-    <div>
+    <main className="main-section">
       <Header pageTitle="Perfil" />
-      <h2 data-testid="profile-email">
-        {email}
-      </h2>
+      <div className="email-field">
+        <h2 data-testid="profile-email">
+          {email}
+        </h2>
+      </div>
       <nav className="category-container">
         <div>
           <button
@@ -46,7 +49,7 @@ function Perfil() {
         </div>
       </nav>
       <Footer />
-    </div>
+    </main>
   );
 }
 
