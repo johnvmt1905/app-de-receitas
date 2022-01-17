@@ -23,16 +23,18 @@ function Comidas() {
         <Header pageTitle="Comidas" needTheSearchBar="true" />
         <Filter url="https://www.themealdb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
-          { selectRecipes().map(({ strMeal, strMealThumb, idMeal }, index) => (
-            index < MAX_MEALS
-          && <CardReceita
-            key={ index }
-            name={ strMeal }
-            img={ strMealThumb }
-            index={ index }
-            id={ idMeal }
-          />
-          )) }
+          <div>
+            { selectRecipes().map(({ strMeal, strMealThumb, idMeal }, index) => (
+              index < MAX_MEALS
+            && <CardReceita
+              key={ index }
+              name={ strMeal }
+              img={ strMealThumb }
+              index={ index }
+              id={ idMeal }
+            />
+            )) }
+          </div>
         </section>
         <Footer />
       </div>

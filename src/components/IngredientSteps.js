@@ -75,7 +75,7 @@ function Details({ product, type, id, history }) {
   }
 
   return (
-    <div>
+    <div className="recipe-details">
       <div>
         <Card.Title>Ingredients</Card.Title>
         <div className="ingredient-steps">

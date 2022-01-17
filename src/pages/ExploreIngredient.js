@@ -50,47 +50,53 @@ function ExploreFoodIngredient() {
     const MAX_MEALS = 12;
     if (pathname.includes('/explorar/comidas')) {
       return (
-        <section>
-          { ingredientsMeals.map(({ strIngredient }, index) => (
-            index < MAX_MEALS
-            && (
-              <button
-                key={ index }
-                type="button"
-                onClick={ () => setRecipeMeal(strIngredient) }
-              >
-                <CardIngredients
-                  name={ strIngredient }
-                  index={ index }
-                  img={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
-                />
-              </button>
-            )
-          )) }
+        <section className="card-container">
+          <div>
+            { ingredientsMeals.map(({ strIngredient }, index) => (
+              index < MAX_MEALS
+              && (
+                <button
+                  key={ index }
+                  className="card-receita ingredients-button"
+                  type="button"
+                  onClick={ () => setRecipeMeal(strIngredient) }
+                >
+                  <CardIngredients
+                    name={ strIngredient }
+                    index={ index }
+                    img={ `https://www.themealdb.com/images/ingredients/${strIngredient}-Small.png` }
+                  />
+                </button>
+              )
+            )) }
+          </div>
         </section>
       );
     }
     if (pathname.includes('/explorar/bebidas')) {
       return (
-        <section>
-          { ingredientsDrinks.map(({ strIngredient1 }, index) => (
-            index < MAX_MEALS
-            && (
-              <button
-                key={ index }
-                type="button"
-                onClick={ () => setRecipeDrink(strIngredient1) }
-              >
-                <CardIngredients
-                  name={ strIngredient1 }
-                  index={ index }
-                  img={
-                    `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`
-                  }
-                />
-              </button>
-            )
-          )) }
+        <section className="card-container ">
+          <div>
+            { ingredientsDrinks.map(({ strIngredient1 }, index) => (
+              index < MAX_MEALS
+              && (
+                <button
+                  key={ index }
+                  className="card-receita ingredients-button"
+                  type="button"
+                  onClick={ () => setRecipeDrink(strIngredient1) }
+                >
+                  <CardIngredients
+                    name={ strIngredient1 }
+                    index={ index }
+                    img={
+                      `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png`
+                    }
+                  />
+                </button>
+              )
+            )) }
+          </div>
         </section>
       );
     }

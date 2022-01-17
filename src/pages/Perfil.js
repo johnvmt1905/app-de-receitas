@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import '../assets/css/perfilStyles.css';
 
 function Perfil() {
   const localUserData = localStorage.getItem('user');
@@ -21,40 +22,34 @@ function Perfil() {
     history.push('/receitas-favoritas');
   }
 
-  function LogoutButton() {
-    localStorage.clear();
-    history.push('/');
-  }
-
   return (
-    <div>
+    <main className="main-section">
       <Header pageTitle="Perfil" />
-      <h2 data-testid="profile-email">
-        {email}
-      </h2>
-      <button
-        type="button"
-        data-testid="profile-done-btn"
-        onClick={ recipesDone }
-      >
-        Receitas Feitas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-favorite-btn"
-        onClick={ recipesFavorites }
-      >
-        Receitas Favoritas
-      </button>
-      <button
-        type="button"
-        data-testid="profile-logout-btn"
-        onClick={ LogoutButton }
-      >
-        Sair
-      </button>
+      <div className="email-field">
+        <h2 data-testid="profile-email">
+          {email}
+        </h2>
+      </div>
+      <nav className="category-container">
+        <div>
+          <button
+            type="button"
+            data-testid="profile-done-btn"
+            onClick={ recipesDone }
+          >
+            Receitas Feitas
+          </button>
+          <button
+            type="button"
+            data-testid="profile-favorite-btn"
+            onClick={ recipesFavorites }
+          >
+            Receitas Favoritas
+          </button>
+        </div>
+      </nav>
       <Footer />
-    </div>
+    </main>
   );
 }
 

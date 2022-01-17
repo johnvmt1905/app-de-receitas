@@ -48,28 +48,30 @@ function handleClick(name, setFilter, setHasFilter) {
 
 function favoritePage(setFilter, setHasFilter) {
   return (
-    <div className="favorite-filters">
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        onClick={ () => handleClick('All', setFilter, setHasFilter) }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        onClick={ () => handleClick('comida', setFilter, setHasFilter) }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        onClick={ () => handleClick('bebida', setFilter, setHasFilter) }
-      >
-        Drinks
-      </button>
+    <div className="category-container">
+      <div>
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          onClick={ () => handleClick('All', setFilter, setHasFilter) }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          onClick={ () => handleClick('comida', setFilter, setHasFilter) }
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          onClick={ () => handleClick('bebida', setFilter, setHasFilter) }
+        >
+          Drinks
+        </button>
+      </div>
     </div>
   );
 }
@@ -102,6 +104,11 @@ function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
     || pageTitle === 'Receitas Feitas';
   const history = useHistory();
 
+  function logoutButton() {
+    localStorage.clear();
+    history.push('/');
+  }
+
   return (
     <>
       <header className="header-div">
@@ -120,8 +127,17 @@ function Header({ pageTitle = 'nome da página', needTheSearchBar = false }) {
           >
             { pageTitle }
           </Link>
-          <div>
+          <div className="logout-button">
             { hasButton() && searchBarIcon(toggleSearchBar, searchBar) }
+            {pageTitle === 'Perfil' && (
+              <button
+                type="button"
+                data-testid="profile-logout-btn"
+                onClick={ logoutButton }
+              >
+                Sair
+              </button>
+            )}
           </div>
         </nav>
       </header>

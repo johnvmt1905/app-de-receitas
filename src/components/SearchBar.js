@@ -85,6 +85,7 @@ function SearchBar({ getRadioValue, setValue, state: { radio, value } }) {
           Buscar
         </button>
       </div>
+      <div className="line-division" />
     </div>
   );
 }

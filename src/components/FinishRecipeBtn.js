@@ -51,15 +51,17 @@ function FinishRecipeBtn({ checkboxes, product, type }) {
   }
 
   return (
-    <button
-      type="button"
-      className="finish-recipe-btn"
-      data-testid="finish-recipe-btn"
-      onClick={ () => handleFinishButton(historyHook, product, type) }
-      disabled={ state.isDisabled }
-    >
-      Finalizar Receita
-    </button>
+    <div className="make-recipe-btn-container">
+      <button
+        type="button"
+        className="finish-recipe-btn"
+        data-testid="finish-recipe-btn"
+        onClick={ () => handleFinishButton(historyHook, product, type) }
+        disabled={ state.isDisabled }
+      >
+        Finalizar Receita
+      </button>
+    </div>
   );
 }
 

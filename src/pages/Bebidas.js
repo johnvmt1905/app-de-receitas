@@ -22,16 +22,18 @@ function Bebidas() {
         <Header pageTitle="Bebidas" needTheSearchBar="true" />
         <Filter url="https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list" />
         <section className="card-container">
-          { selectRecipe().map(({ strDrink, strDrinkThumb, idDrink }, index) => (
-            index < MAX_DRINKS
-          && <CardReceita
-            key={ index }
-            name={ strDrink }
-            img={ strDrinkThumb }
-            index={ index }
-            id={ idDrink }
-          />
-          )) }
+          <div>
+            { selectRecipe().map(({ strDrink, strDrinkThumb, idDrink }, index) => (
+              index < MAX_DRINKS
+            && <CardReceita
+              key={ index }
+              name={ strDrink }
+              img={ strDrinkThumb }
+              index={ index }
+              id={ idDrink }
+            />
+            )) }
+          </div>
         </section>
         <Footer />
       </div>

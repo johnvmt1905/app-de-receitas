@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router';
 import '../assets/css/login.css';
+import logo from '../images/logo.png';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -30,7 +31,7 @@ function Login() {
   return (
     <div className="login-container">
       <form>
-        <h3>App de Receitas</h3>
+        <img src={ logo } alt="Receitas Houseiras logo" />
         <div>
           <input
             placeholder="Email"

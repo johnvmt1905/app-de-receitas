@@ -71,20 +71,3 @@
     transform: rotate(-10deg);
   }
 }
-
-.search-bar {
-  background-color: #c5c3c3;
-  display: flex;
-  flex-direction: column;
-  padding: 20px 0;
-}
-
-.inputs-radio {
-  display: flex;
-  justify-content: space-around;
-}
-
-.search-button {
-  display: flex;
-  justify-content: center;
-}

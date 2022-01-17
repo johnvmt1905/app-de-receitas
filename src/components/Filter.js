@@ -67,18 +67,20 @@ function Filter({ url }) {
 
   return (
     <nav className="category-container">
-      { category && category
-        .map((cat, index) => (
-          <button
-            className="category-button"
-            key={ index }
-            type="button"
-            data-testid={ `${cat.strCategory}-category-filter` }
-            onClick={ () => checkToggle(cat.strCategory) }
-          >
-            { cat.strCategory }
-          </button>
-        )) }
+      <div>
+        { category && category
+          .map((cat, index) => (
+            <button
+              className="category-button"
+              key={ index }
+              type="button"
+              data-testid={ `${cat.strCategory}-category-filter` }
+              onClick={ () => checkToggle(cat.strCategory) }
+            >
+              { cat.strCategory }
+            </button>
+          )) }
+      </div>
     </nav>
   );
 }

@@ -1,7 +1,9 @@
 .login-container {
   align-items: center;
-  background-color: rgb(241, 241, 241);
+  background-color: #f2f7f5;
   display: flex;
+  flex-direction: column;
+  font-family: Antonio , open sans , sans-serif;
   height: 100vh;
   justify-content: center;
   width: 100vw;
@@ -9,58 +11,64 @@
 
 .login-container form {
   align-items: center;
-  background-color: rgb(235, 235, 235);
+  background-color: transparent;
   border-radius: 10px;
-  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.13);
   display: flex;
   flex-direction: column;
-  height: 400px;
+  height: 65%;
   justify-content: center;
-  width: 400px;
+  width: 30%;
 }
 
 .login-container form div {
   align-items: center;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-.login-container form h3 {
-  color: rgb(43, 43, 43);
-  font-size: 30px;
-  font-weight: 700;
-  height: 100px;
+.login-container form img {
+  margin-bottom: 25%;
+  width: 80%;
 }
 
 .login-container form div input {
   border: none;
   border-radius: 20px;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.16);
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.16);
   display: flex;
-  margin-bottom: 25px;
-  padding: 5px 20px;
-  width: 300px;
+  margin-bottom: 40px;
+  padding: 7px 20px;
+  width: 70%;
+}
+
+.login-container form div input:hover {
+  cursor: text;
 }
 
 .login-container form div input:focus {
   border: none;
-  box-shadow: 0 0 5px 5px rgba(144, 180, 206, 0.322);
+  box-shadow: 0 0 5px 3px rgba(250, 174, 43, 0.122);
   outline: none;
 }
 
 .login-container button {
-  background-color: rgb(59, 168, 252);
+  align-items: center;
+  background-color: #faae2b;
   border: none;
   border-radius: 20px;
   color: white;
+  display: flex;
   font-weight: 600;
   height: 35px;
+  justify-content: center;
   transition: 0.2s;
   width: 100px;
 }
 
 .login-container form div button:hover {
-  box-shadow: 0 0 5px 2px rgba(59, 168, 252, 0.534);
+  box-shadow: 0 0 5px 2px #fab744a9;
 }
 
 .login-container form div button:focus {
@@ -73,31 +81,51 @@
 }
 
 .login-container form div button:disabled {
-  background-color: #90b4cec4;
+  background-color: #f1c069b2;
   box-shadow: 0 0 5px 2px rgba(134, 134, 134, 0.334);
   color: rgba(255, 255, 255, 0.863);
 }
+
+
+@media only screen and ( max-width : 900px ) {
+
+  .login-container form {
+    align-items: center;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.13);
+    display: flex;
+    flex-direction: column;
+    height: 65%;
+    justify-content: center;
+    width: 50%;
+  }
+
+  .login-container form img {
+    margin-bottom: 10%;
+    width: 80%;
+  }
+}
+
 
 @media only screen and ( max-width : 361px ) {
 
   .login-container form {
     align-items: center;
-    background-color: rgb(235, 235, 235);
+    background-color: transparent;
     border-radius: 0;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.23);
     display: flex;
     flex-direction: column;
     height: 100vh;
     justify-content: center;
-    width: 400px;
+    width: 100vw;
   }
 
-  .login-container form h3 {
-    font-size: 36px;
-    height: 30%;
-    padding-top: 40px;
-    text-align: center;
-    width: 300px;
+  .login-container form div input {
+    margin: 20px 0;
+    padding: 5px 20px;
+    width: 70%;
   }
 
   .login-container form div {
@@ -113,9 +141,11 @@
   }
 
   .login-container form div button {
-    margin-top: 30px;
+    margin-top: 50px;
+    padding: 10px 0;
     transition: 0.1s;
   }
+
 
   .login-container form div button:focus {
     border: none;
@@ -123,11 +153,7 @@
   }
 
   .login-container form div button:active {
-    background-color: #6ebaf5;
-  }
-
-  .login-container form div button:hover {
-    box-shadow: none;
+    background-color: #fab744a9;
   }
 }
 

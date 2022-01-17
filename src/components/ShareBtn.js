@@ -7,8 +7,10 @@ function ShareBtn({ link, pageTitle, index }) {
   const [displayShareMessage, setDisplayShareMessage] = useState(false);
 
   function handleShare() {
+    const DOIS_SEGUNDOS = 2000;
     setDisplayShareMessage(true);
     copy(`http://localhost:3000${link}`);
+    setTimeout(() => (setDisplayShareMessage(false)), DOIS_SEGUNDOS);
   }
 
   function setTestId(title, i) {
@@ -18,16 +20,18 @@ function ShareBtn({ link, pageTitle, index }) {
     return 'share-btn';
   }
   return (
-    <div>
-      <input
-        data-testid={ setTestId(pageTitle, index) }
-        type="image"
-        alt="Botão de compartilhar"
-        src={ ShareButton }
-        onClick={ handleShare }
-      />
-      { displayShareMessage && <span>Link copiado!</span> }
-    </div>
+    <>
+      { displayShareMessage ? <span>Link copiado!</span> : (
+        <input
+          data-testid={ setTestId(pageTitle, index) }
+          type="image"
+          alt="Botão de compartilhar"
+          src={ ShareButton }
+          onClick={ handleShare }
+        />
+      )}
+      {}
+    </>
   );
 }
 ShareBtn.defaultProps = {
